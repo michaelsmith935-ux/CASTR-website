@@ -603,11 +603,11 @@
     <p class="hero-sub">Desktop application for rigorous, Monte Carlo-powered cost and schedule risk analysis of highway construction projects.</p>
     <p class="hero-tagline">Improving the reliability of project estimates one analysis at a time</p>
     <div class="hero-buttons">
-        <a href="https://github.com/michaelsmith935-ux/PRBE/releases" target="_blank" class="btn btn-primary">Download Free Trial</a>
+        <a id="download-btn" href="https://github.com/michaelsmith935-ux/PRBE/releases" target="_blank" class="btn btn-primary">Download Free Trial</a>
         <a href="purchase.html" class="btn btn-secondary">Purchase License &mdash; $29.99</a>
     </div>
     <p class="hero-renew">Already own PRBE? <a href="https://buy.stripe.com/00w00l54hcDG3Hm0rI2Fa01" target="_blank">Renew &rarr;</a></p>
-    <div class="version-badge">Latest version: v1.7.0 &mdash; released 2026-04-14</div>
+    <div id="latest-version" class="version-badge">Latest version: <span>loading&hellip;</span></div>
     <div class="hero-screenshot" style="margin-top: 2.5rem;">
         <img src="images/image14.png" alt="PRBE Simulation Results - Distribution Charts showing probability distributions for project cost and completion date">
     </div>
@@ -916,6 +916,27 @@
     </div>
     <p>&copy; 2026 PRBE &mdash; Probabilistic Risk-Based Estimating for Highway Construction</p>
 </footer>
+
+<script>
+  fetch('https://api.github.com/repos/michaelsmith935-ux/PRBE/releases/latest')
+    .then(r => r.ok ? r.json() : Promise.reject())
+    .then(data => {
+      const tag  = (data.tag_name || '').replace(/^v/, '');
+      const date = (data.published_at || '').slice(0, 10);
+      const verEl = document.querySelector('#latest-version span');
+      if (verEl && tag) {
+        verEl.textContent = `v${tag}${date ? ' — released ' + date : ''}`;
+      }
+      const dlBtn = document.querySelector('#download-btn');
+      if (dlBtn && data.html_url) {
+        dlBtn.href = data.html_url;
+      }
+    })
+    .catch(() => {
+      const verEl = document.querySelector('#latest-version span');
+      if (verEl) verEl.textContent = 'see GitHub for latest';
+    });
+</script>
 
 </body>
 </html>
