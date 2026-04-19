@@ -360,7 +360,7 @@
 <header>
     <h1>PRBE Application Tool</h1>
     <p>Probabilistic Risk-Based Estimating &mdash; Improving the reliability of project estimates one analysis at a time</p>
-    <span class="version-badge">Latest version: v1.7.0 &mdash; released 2026-04-14</span>
+    <span id="latest-version" class="version-badge">Latest version: <span>loading&hellip;</span></span>
 </header>
 
 <div class="container">
@@ -615,6 +615,23 @@
 
     handleSubmit('purchaseForm', 'email',      'machineId',      'fullName',      STRIPE_NEW_LICENSE_LINK);
     handleSubmit('renewForm',    'renewEmail', 'renewMachineId', 'renewFullName', STRIPE_RENEWAL_LINK);
+</script>
+
+<script>
+  fetch('https://api.github.com/repos/michaelsmith935-ux/PRBE/releases/latest')
+    .then(r => r.ok ? r.json() : Promise.reject())
+    .then(data => {
+      const tag  = (data.tag_name || '').replace(/^v/, '');
+      const date = (data.published_at || '').slice(0, 10);
+      const verEl = document.querySelector('#latest-version span');
+      if (verEl && tag) {
+        verEl.textContent = `v${tag}${date ? ' — released ' + date : ''}`;
+      }
+    })
+    .catch(() => {
+      const verEl = document.querySelector('#latest-version span');
+      if (verEl) verEl.textContent = 'see GitHub for latest';
+    });
 </script>
 
 </body>
