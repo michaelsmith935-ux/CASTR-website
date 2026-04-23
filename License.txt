@@ -1,8 +1,8 @@
-PRBE Software License Agreement
+CASTR Software License Agreement
 
 Version 2.0 — Effective 2026-04-14
 
-This Software License Agreement ("Agreement") applies to the PRBE executable software program and any accompanying files, documentation, and materials (collectively, the "Software") made available by Michael Ray Smith ("Licensor").
+This Software License Agreement ("Agreement") applies to the CASTR executable software program and any accompanying files, documentation, and materials (collectively, the "Software") made available by Michael Ray Smith ("Licensor").
 
 By downloading, installing, or using the Software, you ("User") agree to be bound by this Agreement. If you do not agree to these terms, do not download, install, or use the Software.
 
@@ -48,7 +48,7 @@ When the Upgrade Coverage Window expires:
 
    (a) User's existing installation and license key continue to function indefinitely without further payment, subject to the terms of this Agreement.
 
-   (b) To install releases published after the window expires, User may purchase a renewal, which extends the Upgrade Coverage Window by an additional twelve (12) months for releases published during that renewal window. Renewal is optional. Renewal pricing is published on the PRBE website and may change at Licensor's discretion.
+   (b) To install releases published after the window expires, User may purchase a renewal, which extends the Upgrade Coverage Window by an additional twelve (12) months for releases published during that renewal window. Renewal is optional. Renewal pricing is published on the CASTR website and may change at Licensor's discretion.
 
 Licenses purchased before 2026-04-14 ("Legacy Licenses") include lifetime Upgrade Coverage at no additional cost and are not subject to the renewal model in this Section.
 
@@ -124,7 +124,7 @@ This Agreement shall be governed by and construed in accordance with the laws of
 
 16. Entire Agreement
 
-This Agreement, together with (a) the order confirmation issued to User at the time of purchase and (b) the pricing and ordering terms posted on the PRBE website on the date of User's purchase, constitutes the entire agreement between Licensor and User regarding the Software and supersedes all prior or contemporaneous understandings, whether written or oral. The order confirmation and the then-current posted terms as of the purchase date are the controlling record of the commercial terms applicable to a given sale.
+This Agreement, together with (a) the order confirmation issued to User at the time of purchase and (b) the pricing and ordering terms posted on the CASTR website on the date of User's purchase, constitutes the entire agreement between Licensor and User regarding the Software and supersedes all prior or contemporaneous understandings, whether written or oral. The order confirmation and the then-current posted terms as of the purchase date are the controlling record of the commercial terms applicable to a given sale.
 
 In the event of a conflict between this Agreement and the website content, this Agreement controls, except that Licensor will honor any more favorable terms expressly communicated to User at the time of purchase.
 

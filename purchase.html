@@ -6,7 +6,7 @@
     <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>PRBE - Purchase License</title>
+    <title>CASTR - Purchase License</title>
     <style>
         :root {
             --primary: #1a5276;
@@ -358,7 +358,7 @@
 <body>
 
 <header>
-    <h1>PRBE Application Tool</h1>
+    <h1>CASTR Application Tool</h1>
     <p>Probabilistic Risk-Based Estimating &mdash; Improving the reliability of project estimates one analysis at a time</p>
     <span id="latest-version" class="version-badge">Latest version: <span>loading&hellip;</span></span>
 </header>
@@ -371,7 +371,7 @@
         <div class="step-card">
             <div class="step-number">1</div>
             <h3>Download &amp; Install</h3>
-            <p>Download the free 90-day trial by clicking on the PRBE.zip file from <a href="https://github.com/michaelsmith935-ux/PRBE/releases" target="_blank" rel="noopener">GitHub</a>. The trial includes a sample project plus 2 additional projects you can create. Install and run it to view your unique Machine ID.</p>
+            <p>Download the free 90-day trial by clicking on the CASTR.zip file from <a href="https://github.com/michaelsmith935-ux/PRBE/releases" target="_blank" rel="noopener">GitHub</a>. The trial includes a sample project plus 2 additional projects you can create. Install and run it to view your unique Machine ID.</p>
         </div>
         <div class="step-card">
             <div class="step-number">2</div>
@@ -386,7 +386,7 @@
         <div class="step-card">
             <div class="step-number">4</div>
             <h3>Staying Up to Date</h3>
-            <p>PRBE notifies you in-app when a new release is available and when your upgrade coverage is nearing expiry. You can keep running your current version forever, or renew for TBD to unlock the latest build.</p>
+            <p>CASTR notifies you in-app when a new release is available and when your upgrade coverage is nearing expiry. You can keep running your current version forever, or renew for TBD to unlock the latest build.</p>
         </div>
     </div>
 
@@ -412,7 +412,7 @@
 
                 <div class="machine-id-help">
                     <strong>Where do I find my Machine ID?</strong>
-                    Open the PRBE demo application. Your Machine ID is displayed on the startup screen under "License Information."
+                    Open the CASTR demo application. Your Machine ID is displayed on the startup screen under "License Information."
                 </div>
 
                 <form id="purchaseForm">
@@ -425,7 +425,7 @@
                     <div class="form-group">
                         <label for="machineId">Machine ID</label>
                         <input type="text" id="machineId" name="machineId" placeholder="e.g. 76678B00534BCC7C" required>
-                        <div class="form-hint">Copy this exactly from the PRBE demo application.</div>
+                        <div class="form-hint">Copy this exactly from the CASTR demo application.</div>
                     </div>
 
                     <div class="form-group">
@@ -435,7 +435,7 @@
 
                     <p style="font-size:0.8rem; color:#555; margin:0.75rem 0 0.5rem; text-align:center;">
                         By purchasing, you agree to the
-                        <a href="License.txt" target="_blank" rel="noopener">PRBE Software License Agreement</a>.
+                        <a href="License.txt" target="_blank" rel="noopener">CASTR Software License Agreement</a>.
                     </p>
 
                     <button type="submit" class="buy-button" id="buyBtn">
@@ -479,7 +479,7 @@
                     <div class="form-group">
                         <label for="renewMachineId">Machine ID</label>
                         <input type="text" id="renewMachineId" name="machineId" placeholder="e.g. 76678B00534BCC7C" required>
-                        <div class="form-hint">From the top bar of your licensed PRBE app.</div>
+                        <div class="form-hint">From the top bar of your licensed CASTR app.</div>
                     </div>
 
                     <div class="form-group">
@@ -489,7 +489,7 @@
 
                     <p style="font-size:0.8rem; color:#555; margin:0.75rem 0 0.5rem; text-align:center;">
                         By renewing, you agree to the
-                        <a href="License.txt" target="_blank" rel="noopener">PRBE Software License Agreement</a>.
+                        <a href="License.txt" target="_blank" rel="noopener">CASTR Software License Agreement</a>.
                     </p>
 
                     <button type="submit" class="buy-button" id="renewBtn" style="background:#2c5282;">
@@ -512,7 +512,7 @@
 
         <div class="faq-item">
             <strong>What does the TBD license include?</strong>
-            <p>A perpetual license to run PRBE on one machine, plus 12 months of free upgrades to any new releases published during that window.</p>
+            <p>A perpetual license to run CASTR on one machine, plus 12 months of free upgrades to any new releases published during that window.</p>
         </div>
 
         <div class="faq-item">
@@ -526,7 +526,7 @@
         </div>
 
         <div class="faq-item">
-            <strong>I bought PRBE before v1.7 &mdash; does this affect me?</strong>
+            <strong>I bought CASTR before v1.7 &mdash; does this affect me?</strong>
             <p>No. Licenses purchased before v1.7 include lifetime upgrades at no additional cost. You will continue to receive all future releases free of charge.</p>
         </div>
 
@@ -554,7 +554,7 @@
 </div>
 
 <footer>
-    <p>&copy; 2026 PRBE &mdash; Probabilistic Risk-Based Estimating</p>
+    <p>&copy; 2026 CASTR &mdash; Cost and Schedule Total Risk</p>
     <p style="margin-top:0.5rem;">
         <a href="https://michaelsmith935-ux.github.io/prbe-website/" target="_blank">Main Website</a>
         &nbsp;&bull;&nbsp;
@@ -578,8 +578,8 @@
     // via URL parameters so you can see them in your dashboard.
     // ============================================================
 
-    const STRIPE_NEW_LICENSE_LINK = '#';
-    const STRIPE_RENEWAL_LINK     = '#';
+    const STRIPE_NEW_LICENSE_LINK = 'https://buy.stripe.com/3cI00laoBeLO6TygqG2Fa02';
+    const STRIPE_RENEWAL_LINK     = 'https://buy.stripe.com/cNi9AVgMZbzCgu83DU2Fa04';
 
     function handleSubmit(formId, emailId, machineId, fullNameId, stripeLink) {
         document.getElementById(formId).addEventListener('submit', function(e) {
