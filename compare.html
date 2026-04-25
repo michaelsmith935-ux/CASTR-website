@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>CASTR - How It Compares</title>
+    <style>
+        :root {
+            --primary: #1e3a5f;
+            --primary-light: #2c5282;
+            --accent: #3182ce;
+            --accent-bright: #4299e1;
+            --green: #27ae60;
+            --green-hover: #219a52;
+            --bg: #f7fafc;
+            --card-bg: #ffffff;
+            --text: #2d3748;
+            --text-light: #718096;
+            --border: #e2e8f0;
+            --hero-gradient: linear-gradient(135deg, #1e3a5f 0%, #2c5282 50%, #2b6cb0 100%);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: var(--text);
+            line-height: 1.7;
+            background: var(--bg);
+        }
+
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        /* NAV */
+        nav {
+            background: var(--primary);
+            padding: 0 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+
+        .nav-logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+
+        .nav-links a {
+            color: rgba(255,255,255,0.85);
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: white; text-decoration: none; }
+
+        .nav-cta {
+            background: var(--green);
+            color: white !important;
+            padding: 0.5rem 1.25rem;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .nav-cta:hover { background: var(--green-hover); }
+
+        .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
+        .nav-toggle span { display: block; width: 24px; height: 2px; background: white; margin: 5px 0; transition: 0.3s; }
+
+        /* HERO BANNER */
+        .page-hero {
+            background: var(--hero-gradient);
+            color: white;
+            padding: 4rem 2rem 4.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .page-hero h1 span { color: #90cdf4; }
+
+        .page-hero p {
+            font-size: 1.15rem;
+            color: #e2e8f0;
+            max-width: 750px;
+            margin: 0 auto;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+
+        /* CONTENT */
+        .content {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--accent);
+            display: inline-block;
+        }
+
+        .compare-section {
+            margin-bottom: 3rem;
+        }
+
+        .compare-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .compare-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            border-top: 4px solid var(--border);
+        }
+
+        .compare-card.castr {
+            border-top-color: var(--green);
+        }
+
+        .compare-card.other {
+            border-top-color: var(--text-light);
+        }
+
+        .compare-card h4 {
+            font-size: 1.05rem;
+            margin-bottom: 0.75rem;
+            color: var(--primary);
+        }
+
+        .compare-card.castr h4::before {
+            content: "\2713  ";
+            color: var(--green);
+            font-weight: 700;
+        }
+
+        .compare-card p, .compare-card li {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        .compare-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .compare-card ul li {
+            padding: 0.35rem 0;
+            padding-left: 1.25rem;
+            position: relative;
+        }
+
+        .compare-card ul li::before {
+            content: "\2022";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        /* COMPARISON TABLE */
+        .table-wrap {
+            overflow-x: auto;
+            margin: 2rem 0;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--card-bg);
+            font-size: 0.9rem;
+        }
+
+        thead th {
+            background: var(--primary);
+            color: white;
+            padding: 1rem 1.25rem;
+            text-align: left;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        thead th:first-child {
+            border-radius: 12px 0 0 0;
+        }
+
+        thead th:last-child {
+            border-radius: 0 12px 0 0;
+        }
+
+        thead th.castr-col {
+            background: var(--green);
+        }
+
+        tbody td {
+            padding: 0.85rem 1.25rem;
+            border-bottom: 1px solid var(--border);
+            color: var(--text);
+            vertical-align: top;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        tbody tr:hover {
+            background: #f0f5ff;
+        }
+
+        tbody td:first-child {
+            font-weight: 600;
+            color: var(--primary);
+            white-space: nowrap;
+        }
+
+        /* CTA SECTION */
+        .cta-section {
+            background: var(--hero-gradient);
+            color: white;
+            text-align: center;
+            padding: 3.5rem 2rem;
+            margin-top: 1rem;
+        }
+
+        .cta-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .cta-section p {
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.85rem 2rem;
+            border-radius: 8px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: var(--green);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--green-hover);
+            text-decoration: none;
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.15);
+            color: white;
+            border: 2px solid rgba(255,255,255,0.4);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.25);
+            text-decoration: none;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--primary);
+            color: rgba(255,255,255,0.7);
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.85rem;
+        }
+
+        .footer-links a:hover { color: white; }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .nav-toggle { display: block; }
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 64px;
+                left: 0;
+                right: 0;
+                background: var(--primary);
+                flex-direction: column;
+                padding: 1rem 2rem;
+                gap: 0.75rem;
+            }
+            .nav-links.active { display: flex; }
+
+            .page-hero h1 { font-size: 1.8rem; }
+
+            .compare-grid {
+                grid-template-columns: 1fr;
+            }
+
+            thead th, tbody td {
+                padding: 0.65rem 0.75rem;
+                font-size: 0.82rem;
+            }
+        }
+    </style>
+
+    <!-- GoatCounter analytics -->
+    <script data-goatcounter="https://prbe.goatcounter.com/count"
+            async src="//gc.zgo.at/count.js"></script>
+
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JXBWFSKGJ0"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-JXBWFSKGJ0');
+    </script>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+    <div class="nav-inner">
+        <a href="index.html" style="text-decoration:none;"><div class="nav-logo">CASTR</div></a>
+        <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')">
+            <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#features">Features</a></li>
+            <li><a href="index.html#pricing">Pricing</a></li>
+            <li><a href="https://github.com/michaelsmith935-ux/CASTR/releases" target="_blank">Download</a></li>
+            <li><a href="purchase.html" class="nav-cta">Purchase License</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="page-hero">
+    <h1>How CASTR <span>Compares</span></h1>
+    <p>CASTR sits in the same functional space as tools like Excel+@RISK, DOT in-house models, and schedule-focused tools like Deltek Acumen Risk &mdash; but it is purpose-built for NHI-134205 highway cost and schedule risk analysis.</p>
+</section>
+
+<div class="content">
+
+    <!-- VS EXCEL + @RISK -->
+    <div class="compare-section" id="vs-excel">
+        <h2 class="section-title">1. CASTR vs. Excel + @RISK / Crystal Ball</h2>
+        <div class="compare-grid">
+            <div class="compare-card castr">
+                <h4>CASTR</h4>
+                <ul>
+                    <li>End-to-end highway project cost and schedule risk with explicit segments, phases (PE, ROW+UT, CN, project-wide), inflation, risk register, correlation, minor risks, and NHI-134205 P70 contingency reporting baked in.</li>
+                    <li>Encodes a specific methodology: NHI-134205 contingency definition, P-level budget recommendation, "Percentile of Sum" reporting, and clear treatment of prior/fixed costs vs. historical contingency.</li>
+                    <li>Directly models total project completion date and duration distributions, translating schedule risk into YOE factors via risk-shifted midpoints by phase/segment.</li>
+                    <li>Exposes P10&ndash;P90 spread, skewness, kurtosis, risk-driver concentration, coverage of base costs by risks, and phase/segment distributions out of the box.</li>
+                </ul>
+            </div>
+            <div class="compare-card other">
+                <h4>Excel + @RISK / Crystal Ball</h4>
+                <ul>
+                    <li>General Monte Carlo engines; the user must build the entire structure &mdash; phasing, YOE inflation, midpoints, risk logic, outputs &mdash; from scratch or templates.</li>
+                    <li>Maximum flexibility but no guardrails; methodology quality depends entirely on the modeler, leading to large practice variation across agencies and projects.</li>
+                    <li>Schedule Monte Carlo is doable but requires significant custom work and is easy to get wrong. YOE often approximated with simple factors or scenarios.</li>
+                    <li>Diagnostics can be built, but they are rarely standardized; many models stop at total project P50/P70 cost and a tornado chart.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- VS DOT IN-HOUSE -->
+    <div class="compare-section" id="vs-dot">
+        <h2 class="section-title">2. CASTR vs. DOT In-House Monte Carlo Tools</h2>
+        <div class="compare-grid">
+            <div class="compare-card castr">
+                <h4>CASTR</h4>
+                <ul>
+                    <li>Behaves like a "pre-built, generalized DOT tool" with a modern UI, multi-segment structure, and embedded training cues (NHI course reference, help text, explicit contingency formula).</li>
+                    <li>For an agency that does not already have a strong in-house platform, CASTR raises the floor on consistency and methodological quality relative to ad-hoc spreadsheets.</li>
+                    <li>Generalizes across project sizes and agencies without requiring internal IT maintenance or custom development.</li>
+                </ul>
+            </div>
+            <div class="compare-card other">
+                <h4>DOT In-House Tools</h4>
+                <ul>
+                    <li>Many DOTs (NDOT, UDOT, WSDOT, MnDOT, etc.) have built their own Excel or specialized tools combining Monte Carlo with risk registers for cost and sometimes schedule.</li>
+                    <li>These tools are often project-size-specific, may not generalize well across agencies, and require internal maintenance and training capacity.</li>
+                    <li>Methodology quality varies; agency standards are embedded but not uniform across states.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- VS SCHEDULE-CENTRIC -->
+    <div class="compare-section" id="vs-schedule">
+        <h2 class="section-title">3. CASTR vs. Schedule-Centric Tools (Deltek Acumen Risk, etc.)</h2>
+        <div class="compare-grid">
+            <div class="compare-card castr">
+                <h4>CASTR</h4>
+                <ul>
+                    <li>Uses phase/segment dates plus risk delays to derive completion-date distributions and YOE factors &mdash; no full CPM network required.</li>
+                    <li>For highway owners who need budget guidance more than CPM-depth schedule analytics, this tradeoff is reasonable and dramatically simplifies implementation and training.</li>
+                    <li>Integrates cost, YOE, and risk registers to NHI-style standards in a single workflow.</li>
+                </ul>
+            </div>
+            <div class="compare-card other">
+                <h4>Schedule-Centric Tools</h4>
+                <ul>
+                    <li>Tools like Acumen Risk are excellent at running Monte Carlo on detailed CPM schedules, assessing schedule risk, and reporting date slippage.</li>
+                    <li>Less prescriptive about DOT-style cost contingency methods and cost breakdowns; integrating cost, YOE, and risk registers to NHI-style standards is still a modeling task.</li>
+                    <li>Require a full CPM schedule as input, adding complexity and data preparation effort.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- COMPARISON TABLE -->
+    <div class="compare-section" id="table">
+        <h2 class="section-title">Feature Comparison at a Glance</h2>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Aspect</th>
+                        <th class="castr-col">CASTR</th>
+                        <th>Excel + @RISK / Crystal Ball</th>
+                        <th>DOT In-House Tools</th>
+                        <th>Deltek Acumen Risk-style</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Domain Focus</td>
+                        <td>Highway cost + schedule per NHI-134205</td>
+                        <td>Generic Monte Carlo</td>
+                        <td>Highway/transit, agency-specific</td>
+                        <td>Schedule risk on CPM networks</td>
+                    </tr>
+                    <tr>
+                        <td>Built-in Structure</td>
+                        <td>Segments, phases, risk register, minor risks, YOE inflation, completion date</td>
+                        <td>User builds everything via cells and formulas</td>
+                        <td>Varies; often Excel templates with some structure</td>
+                        <td>Detailed schedules; cost methods vary</td>
+                    </tr>
+                    <tr>
+                        <td>Methodology Guidance</td>
+                        <td>Hard-wired P70, contingency formula, treatment of prior/fixed costs and historical contingency</td>
+                        <td>None; methodology left to modeler</td>
+                        <td>Agency standards embedded but not uniform across states</td>
+                        <td>Strong on schedule metrics, weaker on DOT-style cost contingency</td>
+                    </tr>
+                    <tr>
+                        <td>Diagnostics</td>
+                        <td>Distribution health, variance concentration, coverage, per-component distributions</td>
+                        <td>Possible but not standardized</td>
+                        <td>Varies; some provide only basic output</td>
+                        <td>Strong schedule metrics, varying cost analytics</td>
+                    </tr>
+                    <tr>
+                        <td>Effort to Deploy</td>
+                        <td>Low&ndash;moderate; modeler configures project but not core logic</td>
+                        <td>High; significant model-building and QA</td>
+                        <td>Medium&ndash;high; plus internal IT ownership</td>
+                        <td>Medium; requires full CPM schedule integration</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- VALUE PROPOSITION -->
+    <div class="compare-section" id="value">
+        <h2 class="section-title">Why CASTR?</h2>
+        <div class="compare-grid">
+            <div class="compare-card castr">
+                <h4>Standardization</h4>
+                <p>Forces a consistent, auditable approach across multiple projects and practitioners. Every analysis follows the same NHI-134205 framework regardless of who runs it.</p>
+            </div>
+            <div class="compare-card castr">
+                <h4>Time Savings</h4>
+                <p>Eliminates one-off spreadsheet development and QA for each major project. Start analyzing risks immediately instead of building infrastructure.</p>
+            </div>
+            <div class="compare-card castr">
+                <h4>Training Leverage</h4>
+                <p>Reinforces NHI guidance in the tool itself rather than relying only on classroom retention. The methodology is embedded, not just documented.</p>
+            </div>
+            <div class="compare-card castr">
+                <h4>Lower Total Cost</h4>
+                <p>No need for expensive general-purpose Monte Carlo add-ins, custom spreadsheet development, or internal IT maintenance of agency-specific tools.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- FHWA MAJOR PROJECT FINANCIAL PLANS -->
+    <div class="compare-section" id="fhwa">
+        <h2 class="section-title">FHWA Major Project Financial Plan Approval</h2>
+        <p style="margin-bottom:1.5rem; font-size:1.05rem; color:var(--text-light);">
+            For projects exceeding $500 million, FHWA requires a <a href="https://www.fhwa.dot.gov/majorprojects/financial_plans/guidance14.cfm" target="_blank" rel="noopener">Major Project Financial Plan</a> that must pass rigorous review before approval. CASTR is uniquely positioned to help State DOTs meet these requirements because it is grounded in the same methodology that FHWA developed and teaches.
+        </p>
+
+        <div class="compare-grid">
+            <div class="compare-card castr">
+                <h4>P70 Cost Estimate &mdash; Built In</h4>
+                <p>FHWA guidance states that the total estimated cost in the Initial Financial Plan should reflect the <strong>70th percentile costs</strong> from an unbiased, risk-based probabilistic review. CASTR's NHI-134205 methodology produces P70 budget recommendations as a core output &mdash; no additional modeling or post-processing required.</p>
+            </div>
+            <div class="compare-card castr">
+                <h4>Cost Estimate Review (CER) Alignment</h4>
+                <p>FHWA requires at least one Cost Estimate Review (also called a Cost and Schedule Risk Assessment, CSRA) before submission, performing "an unbiased risk-based probabilistic review to verify the accuracy and reasonableness" of estimates. CASTR's Monte Carlo simulation, contingency formula, and treatment of prior/fixed costs directly mirror the CER methodology, making the review process more straightforward.</p>
+            </div>
+            <div class="compare-card castr">
+                <h4>Risk Documentation &amp; Monitoring</h4>
+                <p>Financial Plans must document significant project risks and response strategies covering schedule, cost, and funding. Annual updates must retire, revise, and add risks. CASTR's built-in risk register, triage heat maps, and mitigation ROI tracking provide exactly this documentation in an auditable, repeatable format.</p>
+            </div>
+            <div class="compare-card castr">
+                <h4>Contingency &amp; Reserve Funding</h4>
+                <p>FHWA requires that the potential impact of risks be reflected in the cost sections through contingency or reserve funding. CASTR's risk-based contingency calculation &mdash; derived from the gap between the base cost and the P70 total project cost &mdash; provides a defensible, methodology-consistent contingency figure that maps directly to FHWA expectations.</p>
+            </div>
+        </div>
+
+        <div style="background:var(--card-bg); border-radius:12px; padding:1.5rem 2rem; margin-top:1.5rem; box-shadow:0 2px 12px rgba(0,0,0,0.06); border-left:4px solid var(--green);">
+            <p style="font-size:1rem; color:var(--text); margin:0;">
+                <strong>The bottom line:</strong> Because CASTR implements the same NHI-134205 methodology that underpins FHWA's Cost Estimate Review process, State DOTs using CASTR can demonstrate direct methodological alignment with federal requirements. This should make the review and approval process more straightforward &mdash; the tool speaks the same language as the reviewers.
+            </p>
+        </div>
+    </div>
+
+</div>
+
+<!-- CTA -->
+<section class="cta-section">
+    <h2>Ready to try CASTR?</h2>
+    <p>Download the free 90-day trial &mdash; includes a sample project plus 2 additional projects you can create. No credit card required.</p>
+    <div class="cta-buttons">
+        <a href="https://github.com/michaelsmith935-ux/CASTR/releases" target="_blank" class="btn btn-primary">Download Free Trial</a>
+        <a href="purchase.html" class="btn btn-secondary">Purchase License</a>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="index.html#features">Features</a>
+        <a href="index.html#pricing">Pricing</a>
+        <a href="purchase.html">Purchase</a>
+        <a href="https://github.com/michaelsmith935-ux/CASTR/releases" target="_blank">Download</a>
+        <a href="License.txt" target="_blank">License Agreement</a>
+    </div>
+    <p>&copy; 2026 CASTR &mdash; Cost and Schedule Total Risk</p>
+</footer>
+
+</body>
+</html>
