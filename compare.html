@@ -529,6 +529,72 @@
         </div>
     </div>
 
+    <!-- DOT LIMITATIONS -->
+    <div class="compare-section" id="dot-limitations">
+        <h2 class="section-title">What Limitations Do DOTs Face with Internal Risk Tools?</h2>
+        <p style="margin-bottom:1.5rem; font-size:1.05rem; color:var(--text-light);">
+            DOTs that rely on internally built cost/schedule risk tools &mdash; usually Excel + @RISK/Crystal Ball or home-grown applications &mdash; tend to hit the same structural limitations: heavy dependence on a few experts, fragile models, and uneven practice across the agency.
+        </p>
+
+        <div class="compare-grid">
+            <div class="compare-card other">
+                <h4>1. Fragile, Spreadsheet-Centric Architectures</h4>
+                <ul>
+                    <li>Most internal tools are complex spreadsheets with Monte Carlo add-ins &mdash; powerful but easy to break when staff tweak formulas, links, or macros. Over time this creates version drift and hidden errors that are hard to audit.</li>
+                    <li>Legacy architectures often lack automated data validation and error checking, so bad inputs or broken references can propagate unnoticed into contingency and P-level recommendations.</li>
+                </ul>
+            </div>
+            <div class="compare-card other">
+                <h4>2. High Dependence on a Few "Gurus"</h4>
+                <ul>
+                    <li>Internal tools typically embed a lot of tacit knowledge: how to structure phases/segments, model correlations, map risks to cost items, and treat YOE and schedule. Only a small group really understands the logic end-to-end.</li>
+                    <li>When those people retire, transfer, or get overloaded, the agency struggles to maintain model quality, update methods, or train new staff without backsliding into simplistic or inconsistent approaches.</li>
+                </ul>
+            </div>
+            <div class="compare-card other">
+                <h4>3. Inconsistent Methodology Across Projects</h4>
+                <ul>
+                    <li>Even with written guidance, spreadsheet-based tools often allow wide variation in how analysts apply risk categories, build risk registers, or define contingency &mdash; e.g., whether they exclude prior/fixed costs, how they treat historical contingency, which percentile to report.</li>
+                    <li>That variation makes it hard for leadership to compare projects or defend decisions, because &ldquo;P70&rdquo; on one project is not strictly comparable to &ldquo;P70&rdquo; on another.</li>
+                </ul>
+            </div>
+            <div class="compare-card other">
+                <h4>4. Limited Integration of Cost, Schedule, and YOE</h4>
+                <ul>
+                    <li>Many internal tools model cost uncertainty reasonably well but only approximate schedule and YOE effects &mdash; simple factors or scenarios rather than properly tying risk-driven delays to midpoints and inflation compounding.</li>
+                    <li>Integration with CPM schedules is often manual or non-existent, so schedule risk insights don't flow cleanly into the cost-risk model, and vice versa.</li>
+                </ul>
+            </div>
+            <div class="compare-card other">
+                <h4>5. Weak Diagnostics and Explainability</h4>
+                <ul>
+                    <li>Internal tools frequently stop at total project P50/P70 cost and maybe a tornado chart; they don't consistently provide distribution health diagnostics, coverage checks, or clear variance attribution.</li>
+                    <li>That limits their usefulness for decision support and communication with executives, FHWA, and external reviewers, who increasingly expect transparent, defensible analytics on drivers and uncertainty quality.</li>
+                </ul>
+            </div>
+            <div class="compare-card other">
+                <h4>6. Maintenance, Governance, and Update Burden</h4>
+                <ul>
+                    <li>Owners of internal tools must handle bug fixing, feature requests, security, documentation, and training on top of their &ldquo;day job,&rdquo; leading to long lags before improvements are implemented.</li>
+                    <li>Methodological updates (e.g., new FHWA/NHI guidance, agency policy changes) require coordinated updates to the tool, templates, and training materials; this is often done piecemeal, so practice drifts from written policy over time.</li>
+                </ul>
+            </div>
+            <div class="compare-card other">
+                <h4>7. Scaling and Knowledge Transfer Challenges</h4>
+                <ul>
+                    <li>Rolling the tool out to regional offices or consultants can be difficult: different versions proliferate, macros behave differently on various machines, and supporting a wide user base overwhelms the small central team that built it.</li>
+                    <li>Without a strong, enforced configuration management and training program, agencies end up with many subtly different &ldquo;official&rdquo; tools, undermining the very standardization they set out to achieve.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div style="background:var(--card-bg); border-radius:12px; padding:1.5rem 2rem; margin-top:1.5rem; box-shadow:0 2px 12px rgba(0,0,0,0.06); border-left:4px solid var(--accent);">
+            <p style="font-size:1rem; color:var(--text); margin:0;">
+                <strong>In short:</strong> Internal DOT risk tools give flexibility and control, but they're inherently fragile, hard to scale, and highly dependent on a few experts. Over time that leads to inconsistent application of risk-based estimating guidance and rising maintenance overhead. CASTR addresses each of these pain points with a purpose-built, standardized platform grounded in NHI-134205 methodology.
+            </p>
+        </div>
+    </div>
+
     <!-- VALUE PROPOSITION -->
     <div class="compare-section" id="value">
         <h2 class="section-title">Why CASTR?</h2>
