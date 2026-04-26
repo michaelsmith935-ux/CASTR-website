@@ -641,17 +641,17 @@
         <div class="feature-card">
             <div class="feature-icon">&#127922;</div>
             <h3>Monte Carlo Simulation</h3>
-            <p>Run thousands of iterations with configurable parameters, convergence monitoring, and reproducible results via random seed control.</p>
+            <p>Run 100 to 100,000 iterations with convergence-based early termination, reproducible seed control, and half-vs-half stability testing on mean and budget percentile.</p>
         </div>
         <div class="feature-card">
             <div class="feature-icon">&#128202;</div>
             <h3>Distribution Charts</h3>
-            <p>Interactive PDF and CDF charts for total cost (current year and year-of-expenditure) and project completion date with percentile analysis.</p>
+            <p>Interactive histogram + CDF overlay for total cost (CY and YOE), duration, and project completion date. Configurable bin counts, labeled percentile lines, dynamic bar coloring around the budget cutoff, and 300 DPI PNG download.</p>
         </div>
         <div class="feature-card">
             <div class="feature-icon">&#127943;</div>
             <h3>Tornado &amp; Sensitivity Analysis</h3>
-            <p>Identify which risk variables have the greatest influence on cost and schedule using Spearman rank correlation tornado charts.</p>
+            <p>Spearman rank correlation tornado charts with variance share annotation. Risk Impact mode shows bar range, mode, and EV markers. Toggle EV vs. variance share sorting across cost CY, cost YOE, and schedule views.</p>
         </div>
         <div class="feature-card">
             <div class="feature-icon">&#128200;</div>
@@ -666,7 +666,7 @@
         <div class="feature-card">
             <div class="feature-icon">&#128279;</div>
             <h3>Correlation Analysis</h3>
-            <p>Define cost-cost, schedule-schedule, and cross-type correlations using a Gaussian copula for realistic multi-variable modeling.</p>
+            <p>Define cost-cost, schedule-schedule, and cost-schedule cross-pair correlations using a Gaussian copula. Automatic positive-semi-definite matrix repair when user entries are inconsistent, with an achieved-vs-requested correlation report.</p>
         </div>
         <div class="feature-card">
             <div class="feature-icon">&#128197;</div>
@@ -676,27 +676,52 @@
         <div class="feature-card">
             <div class="feature-icon">&#128196;</div>
             <h3>Risk Register &amp; Reporting</h3>
-            <p>Comprehensive risk register with customizable views (Brief, Standard, Full), CSV/Excel export, and print-optimized layouts.</p>
+            <p>Comprehensive risk register with customizable column presets (Brief, Standard, Full, Custom), row locking, MIT toggle, status tracking (Active/Inactive/Closed), orphan detection, and auto-sync from Risk Identification.</p>
         </div>
         <div class="feature-card">
             <div class="feature-icon">&#128230;</div>
             <h3>Import &amp; Export</h3>
-            <p>Import risks from Excel templates, export risk registers, and backup/restore complete projects for transfer or archival.</p>
+            <p>Import risks from Excel templates with preview-before-commit and validation. Export risk registers to CSV/Excel. Generate Word (.docx) reports with embedded charts. Backup/restore complete projects with versioned manifests.</p>
         </div>
         <div class="feature-card">
             <div class="feature-icon">&#128736;</div>
             <h3>Risk Mitigation &amp; ROI</h3>
-            <p>Define mitigation actions per risk, model residual distributions, and run pre- vs. post-mitigation simulations with a full ROI summary table.</p>
+            <p>Full risk response workflow (Accept/Mitigate/Avoid/Transfer) with mitigation cost, owner, due date, and stale-date warnings. Pre- vs. post-mitigation simulation with overlay charts and ROI table in both CY and YOE-by-scenario views.</p>
         </div>
         <div class="feature-card">
             <div class="feature-icon">&#128293;</div>
             <h3>Triage View &amp; Heat Maps</h3>
-            <p>Score risks 1&ndash;5 for probability, cost, and schedule in rapid workshop sessions. Two 5&times;5 heat maps show where portfolio risk mass concentrates.</p>
+            <p>Score risks 1&ndash;5 for probability, cost, and schedule impact. Two 5&times;5 heat maps with click-to-filter cells. Seed button auto-generates Triangular distributions from triage scores. Contingency Envelope card benchmarks against AASHTO/design-stage bands per project complexity.</p>
         </div>
         <div class="feature-card">
             <div class="feature-icon">&#128218;</div>
             <h3>Starter Risk Library</h3>
             <p>Ship with ~100 pre-built highway construction risks organized by category. Drop risks into any project in seconds and customize from there.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">&#128200;</div>
+            <h3>Five Distribution Shapes</h3>
+            <p>Triangular, BetaPERT, Uniform, Normal, and Constant distributions with parameter validation and live PDF/CDF preview. Model risk dependencies as mutually inclusive, mutually exclusive, or project-wide with auto-computed effective probability.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">&#128201;</div>
+            <h3>Three Budget-Percentile Methods</h3>
+            <p>Choose Percentile of Sum (PoS, NHI-134205 default), Sum of Phase-Segment Percentiles (SoPSP), or Sum of Segment Percentiles (SoSP). Reconstructed distribution charts reconcile visually with the chosen method.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">&#128200;</div>
+            <h3>Inflation Sensitivity Scenarios</h3>
+            <p>Run the same simulation across multiple inflation deltas (e.g., -3%, baseline, +5%) using cached random draws so all scenarios are bit-for-bit comparable. Sensitivity curve chart for inflation-delta extrapolation.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">&#128154;</div>
+            <h3>Distribution Health &amp; Diagnostics</h3>
+            <p>Coverage-driven traffic light, P10&ndash;P90 spread, skewness, excess kurtosis, variance concentration (Dominated/Concentrated/Broadly sourced), and component analysis decomposing contingency into Base Variability, Market Conditions, and Risk Register contributions.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">&#128274;</div>
+            <h3>Defensibility &amp; Audit Trail</h3>
+            <p>Convergence diagnostics saved with every run. Achieved correlation report vs. requested coefficients. Full run history with settings snapshots. Stale-results banner when inputs change after the last simulation. Pre-run validation gate.</p>
         </div>
         <div class="feature-card">
             <div class="feature-icon">&#9881;</div>
@@ -716,7 +741,7 @@
         <div class="feature-card">
             <div class="feature-icon">&#128203;</div>
             <h3>Minor Risks &amp; Allowances</h3>
-            <p>Model low-impact, high-frequency risks as a lump-sum percentage allowance rather than individual events. Keeps the risk register focused on what matters most.</p>
+            <p>Model low-impact risks as single expected-value amounts (impact &times; likelihood) added deterministically each iteration, keeping the risk register focused on what matters most.</p>
         </div>
         <div class="feature-card">
             <div class="feature-icon">&#128270;</div>
@@ -726,12 +751,12 @@
         <div class="feature-card">
             <div class="feature-icon">&#128300;</div>
             <h3>What-If Sensitivity</h3>
-            <p>Deactivate one or more risks and instantly re-run the simulation to see how the YOE distribution and contingency change. Understand each risk's true contribution to the budget.</p>
+            <p>Deactivate risks and instantly see how the YOE distribution and contingency shift using a hybrid recompute engine &mdash; cost-only changes resolve client-side via a leave-one-out impact matrix; schedule-affecting changes trigger a synchronous engine re-run.</p>
         </div>
         <div class="feature-card">
             <div class="feature-icon">&#128424;</div>
             <h3>Print &amp; Export</h3>
-            <p>Print-optimized summary reports, downloadable PNG charts, percentile tables, and CSV/Excel export of risk registers. Share results with stakeholders in any format.</p>
+            <p>Word (.docx) report generation with embedded charts at presentation-friendly font sizes. 300 DPI PNG chart downloads for sharp Office insertion. Print-to-PDF with scenario-aware section duplication. CSV/Excel risk register export.</p>
         </div>
     </div>
 </section>
@@ -764,12 +789,12 @@
     <div class="showcase-item reverse">
         <div class="showcase-text">
             <h3>Risk Identification</h3>
-            <p>Define risk events with probability distributions, dependency types, and detailed documentation. Import risks directly from Excel templates.</p>
+            <p>Define risk events with five distribution shapes, dependency types, and detailed documentation. Standard and Triage views on the same data for full edit or rapid 1&ndash;5 scoring workflows.</p>
             <ul>
-                <li>Triangular, BetaPERT, Uniform, and Normal distributions</li>
-                <li>Visual distribution editor with PDF/CDF preview</li>
-                <li>Mutually inclusive/exclusive dependency modeling</li>
-                <li>Excel template import for workshop data</li>
+                <li>Triangular, BetaPERT, Uniform, Normal, and Constant distributions with live preview</li>
+                <li>Mutually inclusive, mutually exclusive, and project-wide dependency modeling</li>
+                <li>Seed Distribution auto-generates quantitative inputs from triage scores</li>
+                <li>SME-reviewed tracking flags which seeded values have been ratified by the workshop</li>
             </ul>
         </div>
         <div class="showcase-img">
@@ -780,13 +805,13 @@
     <!-- Showcase 3: Simulation Results -->
     <div class="showcase-item">
         <div class="showcase-text">
-            <h3>Contingency Analysis</h3>
-            <p>Get clear, defensible budget recommendations with detailed statistics for current-year and year-of-expenditure costs.</p>
+            <h3>Contingency Analysis &amp; Diagnostics</h3>
+            <p>Get clear, defensible budget recommendations with NHI-134205 contingency breakout, inflation sensitivity scenarios, and component analysis.</p>
             <ul>
-                <li>Risk-based contingency calculation</li>
-                <li>P10 through P90 percentile tracking</li>
-                <li>Budget recommendation with confidence level</li>
-                <li>Printable summary reports</li>
+                <li>NHI-134205 contingency with prior/fixed cost breakout and inflation-scenario comparison</li>
+                <li>Component Analysis decomposes contingency into Base Variability, Market Conditions, and Risk Register contributions</li>
+                <li>Distribution Health card with coverage traffic light, variance concentration, and skewness/kurtosis</li>
+                <li>Six results tabs: Summary Statistics, Mitigation Analysis, Distributions, Tornado, Tail Drivers, What-If Sensitivity</li>
             </ul>
         </div>
         <div class="showcase-img">
@@ -800,10 +825,10 @@
             <h3>Triage Scoring &amp; Heat Maps</h3>
             <p>Rapidly score risks in workshop sessions using a 1&ndash;5 probability/cost/schedule framework. Two 5&times;5 heat maps give an instant visual snapshot of where portfolio risk concentrates, so the team can focus discussion on the highest-priority items.</p>
             <ul>
-                <li>1&ndash;5 rapid scoring for probability, cost, and schedule</li>
-                <li>Combined priority ranking (Prob &times; max impact)</li>
-                <li>Click heat map cells to filter the risk table instantly</li>
-                <li>Seed button converts qualitative scores into starter distributions in one click</li>
+                <li>1&ndash;5 rapid scoring with Combined Priority Score ranking</li>
+                <li>Click heat map cells to filter; stack with category and phase-segment filters</li>
+                <li>Bulk Seed All Promoted with projected envelope preview before commit</li>
+                <li>Contingency Envelope card benchmarks risk coverage against AASHTO/design-stage bands per project complexity tier</li>
             </ul>
         </div>
         <div class="showcase-img">
@@ -900,11 +925,11 @@
     <div class="showcase-item reverse">
         <div class="showcase-text">
             <h3>Simulation Settings &amp; Run Modes</h3>
-            <p>Fine-tune the Monte Carlo engine with configurable iteration counts, convergence tolerance, and random seed control. Three run modes let you analyze pre-mitigation, post-mitigation, or compare both side by side.</p>
+            <p>Fine-tune the Monte Carlo engine with configurable iteration counts (100&ndash;100,000), convergence tolerance, and random seed control. Three run modes let you analyze pre-mitigation, post-mitigation, or compare both side by side.</p>
             <ul>
-                <li>Up to 10,000 iterations with early convergence stopping</li>
+                <li>Convergence-based early termination with half-vs-half stability testing</li>
                 <li>Pre-Mitigation, Post-Mitigation, and Compare Both modes</li>
-                <li>Customizable output percentiles and histogram resolution</li>
+                <li>Inflation Sensitivity Scenarios with bit-for-bit comparable cached draws</li>
                 <li>Configurable budget percentile (P70 default per NHI-134205)</li>
             </ul>
         </div>
