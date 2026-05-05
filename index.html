@@ -109,17 +109,17 @@
             position: fixed;
             top: 0;
             left: 0;
-            width: 200px;
+            width: 140px;
             height: 64px;
             z-index: 101;
             border-radius: 0;
             box-shadow: none;
-            background: transparent;
+            background: var(--primary);
         }
 
         #splash-overlay.settled img {
-            object-fit: cover;
-            object-position: center 38%;
+            object-fit: contain;
+            object-position: left center;
         }
 
         body.splash-active {
@@ -1318,7 +1318,7 @@
     if (!splash) return;
 
     // Target dimensions for the settled splash (matches nav bar height)
-    var SETTLED_W = 200;
+    var SETTLED_W = 140;
     var SETTLED_H = 64;
 
     // After 2.5s on screen, animate the shrink
