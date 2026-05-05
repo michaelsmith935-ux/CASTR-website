@@ -86,6 +86,61 @@
         .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
         .nav-toggle span { display: block; width: 24px; height: 2px; background: white; margin: 5px 0; transition: 0.3s; }
 
+        /* ========== SPLASH SCREEN ========== */
+        #splash-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 55%, #2b6cb0 100%);
+            transition: opacity 0.5s ease;
+        }
+
+        #splash-overlay img {
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+        }
+
+        #splash-overlay.shrinking {
+            animation: splashShrink 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        @keyframes splashShrink {
+            0% {
+                top: 0; left: 0;
+                width: 100vw; height: 100vh;
+                border-radius: 0;
+                opacity: 1;
+            }
+            70% {
+                top: 64px; left: 0;
+                width: 180px; height: 50px;
+                border-radius: 6px;
+                opacity: 0.85;
+            }
+            100% {
+                top: 64px; left: 0;
+                width: 180px; height: 50px;
+                border-radius: 6px;
+                opacity: 0;
+            }
+        }
+
+        #splash-overlay.shrinking img {
+            object-fit: cover;
+            object-position: center 38%;
+        }
+
+        body.splash-active {
+            overflow: hidden;
+        }
+
         /* ========== HERO ========== */
         .hero {
             background: var(--hero-gradient);
@@ -592,7 +647,12 @@
       gtag('config', 'G-JXBWFSKGJ0');
     </script>
 </head>
-<body>
+<body class="splash-active">
+
+<!-- SPLASH SCREEN -->
+<div id="splash-overlay">
+    <img src="CASTR_Splash.svg" alt="CASTR Loading">
+</div>
 
 <!-- NAV -->
 <nav>
@@ -1264,6 +1324,58 @@
       const verEl = document.querySelector('#latest-version span');
       if (verEl) verEl.textContent = 'see GitHub for latest';
     });
+</script>
+
+<!-- Splash screen controller -->
+<script>
+(function() {
+    var splash = document.getElementById('splash-overlay');
+    if (!splash) return;
+
+    // Compute the target position: just below the CASTR nav-logo
+    function getLogoTarget() {
+        var logo = document.querySelector('.nav-logo');
+        if (!logo) return { top: 64, left: 16 };
+        var rect = logo.getBoundingClientRect();
+        return { top: rect.bottom + 2, left: rect.left };
+    }
+
+    // After 2.5s on screen, start the shrink animation
+    setTimeout(function() {
+        var target = getLogoTarget();
+
+        // Dynamically update the animation endpoint to sit under the nav logo
+        splash.style.setProperty('--target-top', target.top + 'px');
+        splash.style.setProperty('--target-left', target.left + 'px');
+
+        // Apply dynamic keyframes
+        var styleEl = document.createElement('style');
+        styleEl.textContent =
+            '@keyframes splashShrink {' +
+            '  0%   { top:0; left:0; width:100vw; height:100vh; border-radius:0; opacity:1; }' +
+            '  60%  { top:' + target.top + 'px; left:' + target.left + 'px; width:160px; height:44px; border-radius:6px; opacity:0.9; }' +
+            '  85%  { top:' + target.top + 'px; left:' + target.left + 'px; width:160px; height:44px; border-radius:6px; opacity:0.7; }' +
+            '  100% { top:' + target.top + 'px; left:' + target.left + 'px; width:160px; height:44px; border-radius:6px; opacity:0; }' +
+            '}';
+        document.head.appendChild(styleEl);
+
+        splash.classList.add('shrinking');
+
+        // Remove splash and unlock scroll after animation ends
+        splash.addEventListener('animationend', function() {
+            splash.remove();
+            document.body.classList.remove('splash-active');
+        });
+
+        // Fallback removal in case animationend doesn't fire
+        setTimeout(function() {
+            if (splash.parentNode) {
+                splash.remove();
+                document.body.classList.remove('splash-active');
+            }
+        }, 1500);
+    }, 2500);
+})();
 </script>
 
 </body>
