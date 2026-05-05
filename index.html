@@ -877,7 +877,75 @@
         </div>
     </div>
 
-    <!-- Showcase 2: Risk Identification -->
+    <!-- Showcase 2: Market Conditions & Gap Detection -->
+    <div class="showcase-item reverse">
+        <div class="showcase-text">
+            <h3>Market Conditions &amp; Gap Detection</h3>
+            <p>Model Better-Than-Planned, As-Planned, and Worse-Than-Planned market scenarios per phase-segment. Built-in gap detection warns you when scenario ranges don't overlap, preventing probability dead zones in the simulation.</p>
+            <ul>
+                <li>Triangular cost multipliers for each market scenario</li>
+                <li>Scenario distribution chart shows individual and combined probability density</li>
+                <li>Automatic gap detection with actionable fix guidance</li>
+                <li>Paste from Excel for rapid data entry</li>
+            </ul>
+        </div>
+        <div class="showcase-img">
+            <img src="images/image_market.png" alt="CASTR Market Conditions page with gap detection warning">
+        </div>
+    </div>
+
+    <!-- Showcase 3: Review Staging & Dependencies -->
+    <div class="showcase-item">
+        <div class="showcase-text">
+            <h3>Review Staging &amp; Dependencies</h3>
+            <p>Define how phase-segments relate to each other with predecessor/successor linkages. Choose Direct or Delay-Dependent rules to control how schedule changes propagate through the project network.</p>
+            <ul>
+                <li>Phase-segment overview with start/end dates and inflation table assignments</li>
+                <li>Direct links: both delays and improvements propagate downstream</li>
+                <li>Delay-Dependent links: only delays propagate, improvements are blocked</li>
+                <li>Gantt-style visualization of the dependency network</li>
+            </ul>
+        </div>
+        <div class="showcase-img">
+            <img src="images/image_staging.png" alt="CASTR Review Staging page with predecessor linkages and Gantt chart">
+        </div>
+    </div>
+
+    <!-- Showcase 4: Simulation Settings & Run Modes -->
+    <div class="showcase-item reverse">
+        <div class="showcase-text">
+            <h3>Simulation Settings &amp; Run Modes</h3>
+            <p>Fine-tune the Monte Carlo engine with configurable iteration counts (100&ndash;100,000), convergence tolerance, and random seed control. Three run modes let you analyze pre-response, post-response, or compare both side by side.</p>
+            <ul>
+                <li>Convergence-based early termination with half-vs-half stability testing</li>
+                <li>Pre-Response, Post-Response, and Compare Both run modes</li>
+                <li>Inflation Sensitivity Scenarios with bit-for-bit comparable cached draws</li>
+                <li>Configurable budget percentile (P70 default per NHI-134205)</li>
+            </ul>
+        </div>
+        <div class="showcase-img">
+            <img src="images/image_simulation.png" alt="CASTR Simulation Settings with run mode options">
+        </div>
+    </div>
+
+    <!-- Showcase 5: Triage Scoring & Heat Maps -->
+    <div class="showcase-item">
+        <div class="showcase-text">
+            <h3>Triage Scoring &amp; Heat Maps</h3>
+            <p>Rapidly score risks in workshop sessions using a 1&ndash;5 probability/cost/schedule framework. Two 5&times;5 heat maps give an instant visual snapshot of where portfolio risk concentrates, so the team can focus discussion on the highest-priority items.</p>
+            <ul>
+                <li>1&ndash;5 rapid scoring with Combined Priority Score ranking</li>
+                <li>Click heat map cells to filter; stack with category and phase-segment filters</li>
+                <li>Bulk Seed All Promoted with projected envelope preview before commit</li>
+                <li>Contingency Envelope card benchmarks risk coverage against AASHTO/design-stage bands per project complexity tier</li>
+            </ul>
+        </div>
+        <div class="showcase-img">
+            <img src="images/image17.png" alt="CASTR Triage View with 5x5 Cost and Schedule Heat Maps">
+        </div>
+    </div>
+
+    <!-- Showcase 6: Risk Identification -->
     <div class="showcase-item reverse">
         <div class="showcase-text">
             <h3>Risk Identification</h3>
@@ -895,8 +963,25 @@
         </div>
     </div>
 
-    <!-- Showcase 3: Simulation Results -->
+    <!-- Showcase 7: SME-Reviewed Coverage Tracking -->
     <div class="showcase-item">
+        <div class="showcase-text">
+            <h3>SME-Reviewed Coverage Tracking</h3>
+            <p>Know exactly how much of your risk portfolio has been vetted by the workshop. The Contingency Envelope cards track Seeded vs. SME-Reviewed risk counts so the team can see at a glance how much review work remains.</p>
+            <ul>
+                <li>Envelope cards compare Seeded EV vs. SME-Reviewed EV</li>
+                <li>Three-way risk count column: Active, Reviewed, and Inactive</li>
+                <li>Standard view envelope card benchmarks coverage against design-stage bands</li>
+                <li>Quantify flag distinguishes which risks graduate to full distributions vs. remain on the Minor Risks list</li>
+            </ul>
+        </div>
+        <div class="showcase-img">
+            <img src="images/sme_reviewed_coverage.png" alt="CASTR SME-Reviewed Coverage with Contingency Envelope cards">
+        </div>
+    </div>
+
+    <!-- Showcase 8: Contingency Analysis & Diagnostics -->
+    <div class="showcase-item reverse">
         <div class="showcase-text">
             <h3>Contingency Analysis &amp; Diagnostics</h3>
             <p>Get clear, defensible budget recommendations with NHI-134205 contingency breakout, inflation sensitivity scenarios, and component analysis.</p>
@@ -912,126 +997,7 @@
         </div>
     </div>
 
-    <!-- Showcase 4: Triage & Heat Maps -->
-    <div class="showcase-item reverse">
-        <div class="showcase-text">
-            <h3>Triage Scoring &amp; Heat Maps</h3>
-            <p>Rapidly score risks in workshop sessions using a 1&ndash;5 probability/cost/schedule framework. Two 5&times;5 heat maps give an instant visual snapshot of where portfolio risk concentrates, so the team can focus discussion on the highest-priority items.</p>
-            <ul>
-                <li>1&ndash;5 rapid scoring with Combined Priority Score ranking</li>
-                <li>Click heat map cells to filter; stack with category and phase-segment filters</li>
-                <li>Bulk Seed All Promoted with projected envelope preview before commit</li>
-                <li>Contingency Envelope card benchmarks risk coverage against AASHTO/design-stage bands per project complexity tier</li>
-            </ul>
-        </div>
-        <div class="showcase-img">
-            <img src="images/image17.png" alt="CASTR Triage View with 5x5 Cost and Schedule Heat Maps">
-        </div>
-    </div>
-
-    <!-- Showcase 5: Tornado & Sensitivity -->
-    <div class="showcase-item">
-        <div class="showcase-text">
-            <h3>Sensitivity &amp; Tail Drivers</h3>
-            <p>Pinpoint exactly which risks matter most with tornado charts and tail driver analysis, so teams can focus risk responses where they count.</p>
-            <ul>
-                <li>Spearman rank correlation tornado charts with &ldquo;% var&rdquo; variance share annotation</li>
-                <li>Toggle Sort: EV vs. Sort: Variance Share for different prioritization views</li>
-                <li>Top 3 favorable and adverse tail drivers with fire rate and excess contribution metrics</li>
-                <li>Confidence chips (Reliable/Review/Insufficient) on each tail card show ranking stability</li>
-            </ul>
-        </div>
-        <div class="showcase-img">
-            <img src="images/tail_drivers.png" alt="CASTR Tornado Chart and Tail Driver Analysis with confidence chips">
-        </div>
-    </div>
-
-    <!-- Showcase 6: Risk Response & ROI -->
-    <div class="showcase-item reverse">
-        <div class="showcase-text">
-            <h3>Risk Response &amp; ROI Analysis</h3>
-            <p>Go beyond risk identification. Define per-axis risk response strategies for each risk, model the residual probability and impact, then run pre- vs. post-response simulations to see exactly how much your response program is worth.</p>
-            <ul>
-                <li>Per-axis PMI response strategies (Accept/Avoid/Escalate/Mitigate/Transfer for threats; Accept/Enhance/Escalate/Exploit/Share for opportunities)</li>
-                <li>Compare Both mode overlays pre/post CDF curves side by side</li>
-                <li>ROI summary table with net benefit and return ratio per risk, in both CY and YOE-by-scenario views</li>
-                <li>Residual distribution editor with green backshade for post-response impact</li>
-            </ul>
-        </div>
-        <div class="showcase-img">
-            <img src="images/response_analysis.png" alt="CASTR Risk Response Analysis with pre vs post comparison">
-        </div>
-    </div>
-
-    <!-- Showcase 7: Review Staging & Dependencies -->
-    <div class="showcase-item">
-        <div class="showcase-text">
-            <h3>Review Staging &amp; Dependencies</h3>
-            <p>Define how phase-segments relate to each other with predecessor/successor linkages. Choose Direct or Delay-Dependent rules to control how schedule changes propagate through the project network.</p>
-            <ul>
-                <li>Phase-segment overview with start/end dates and inflation table assignments</li>
-                <li>Direct links: both delays and improvements propagate downstream</li>
-                <li>Delay-Dependent links: only delays propagate, improvements are blocked</li>
-                <li>Gantt-style visualization of the dependency network</li>
-            </ul>
-        </div>
-        <div class="showcase-img">
-            <img src="images/image_staging.png" alt="CASTR Review Staging page with predecessor linkages and Gantt chart">
-        </div>
-    </div>
-
-    <!-- Showcase 8: Market Conditions & Gap Detection -->
-    <div class="showcase-item reverse">
-        <div class="showcase-text">
-            <h3>Market Conditions &amp; Gap Detection</h3>
-            <p>Model Better-Than-Planned, As-Planned, and Worse-Than-Planned market scenarios per phase-segment. Built-in gap detection warns you when scenario ranges don't overlap, preventing probability dead zones in the simulation.</p>
-            <ul>
-                <li>Triangular cost multipliers for each market scenario</li>
-                <li>Scenario distribution chart shows individual and combined probability density</li>
-                <li>Automatic gap detection with actionable fix guidance</li>
-                <li>Paste from Excel for rapid data entry</li>
-            </ul>
-        </div>
-        <div class="showcase-img">
-            <img src="images/image_market.png" alt="CASTR Market Conditions page with gap detection warning">
-        </div>
-    </div>
-
-    <!-- Showcase 9: What-If Sensitivity -->
-    <div class="showcase-item">
-        <div class="showcase-text">
-            <h3>What-If Sensitivity Analysis</h3>
-            <p>Deactivate one or more risks and instantly re-run the simulation to see exactly how the YOE distribution and contingency shift. Understand each risk's true dollar contribution to the budget recommendation.</p>
-            <ul>
-                <li>Toggle individual risks on/off with one click</li>
-                <li>Live YOE distribution chart updates with the deactivated scenario</li>
-                <li>Side-by-side contingency comparison: live vs. baseline</li>
-                <li>See exact percentage-point and dollar impact per risk</li>
-            </ul>
-        </div>
-        <div class="showcase-img">
-            <img src="images/whatif_sensitivity.png" alt="CASTR What-If Sensitivity analysis showing risk deactivation impact on YOE distribution">
-        </div>
-    </div>
-
-    <!-- Showcase 10: Simulation Settings -->
-    <div class="showcase-item reverse">
-        <div class="showcase-text">
-            <h3>Simulation Settings &amp; Run Modes</h3>
-            <p>Fine-tune the Monte Carlo engine with configurable iteration counts (100&ndash;100,000), convergence tolerance, and random seed control. Three run modes let you analyze pre-response, post-response, or compare both side by side.</p>
-            <ul>
-                <li>Convergence-based early termination with half-vs-half stability testing</li>
-                <li>Pre-Response, Post-Response, and Compare Both run modes</li>
-                <li>Inflation Sensitivity Scenarios with bit-for-bit comparable cached draws</li>
-                <li>Configurable budget percentile (P70 default per NHI-134205)</li>
-            </ul>
-        </div>
-        <div class="showcase-img">
-            <img src="images/image_simulation.png" alt="CASTR Simulation Settings with run mode options">
-        </div>
-    </div>
-
-    <!-- Showcase 11: Joint Confidence -->
+    <!-- Showcase 9: Joint Confidence Analysis -->
     <div class="showcase-item">
         <div class="showcase-text">
             <h3>Joint Confidence Analysis</h3>
@@ -1048,20 +1014,54 @@
         </div>
     </div>
 
-    <!-- Showcase 12: SME-Reviewed Coverage -->
+    <!-- Showcase 10: Risk Response & ROI Analysis -->
     <div class="showcase-item reverse">
         <div class="showcase-text">
-            <h3>SME-Reviewed Coverage Tracking</h3>
-            <p>Know exactly how much of your risk portfolio has been vetted by the workshop. The Contingency Envelope cards track Seeded vs. SME-Reviewed risk counts so the team can see at a glance how much review work remains.</p>
+            <h3>Risk Response &amp; ROI Analysis</h3>
+            <p>Go beyond risk identification. Define per-axis risk response strategies for each risk, model the residual probability and impact, then run pre- vs. post-response simulations to see exactly how much your response program is worth.</p>
             <ul>
-                <li>Envelope cards compare Seeded EV vs. SME-Reviewed EV</li>
-                <li>Three-way risk count column: Active, Reviewed, and Inactive</li>
-                <li>Standard view envelope card benchmarks coverage against design-stage bands</li>
-                <li>Quantify flag distinguishes which risks graduate to full distributions vs. remain on the Minor Risks list</li>
+                <li>Per-axis PMI response strategies (Accept/Avoid/Escalate/Mitigate/Transfer for threats; Accept/Enhance/Escalate/Exploit/Share for opportunities)</li>
+                <li>Compare Both mode overlays pre/post CDF curves side by side</li>
+                <li>ROI summary table with net benefit and return ratio per risk, in both CY and YOE-by-scenario views</li>
+                <li>Residual distribution editor with green backshade for post-response impact</li>
             </ul>
         </div>
         <div class="showcase-img">
-            <img src="images/sme_reviewed_coverage.png" alt="CASTR SME-Reviewed Coverage with Contingency Envelope cards">
+            <img src="images/response_analysis.png" alt="CASTR Risk Response Analysis with pre vs post comparison">
+        </div>
+    </div>
+
+    <!-- Showcase 11: Sensitivity & Tail Drivers -->
+    <div class="showcase-item">
+        <div class="showcase-text">
+            <h3>Sensitivity &amp; Tail Drivers</h3>
+            <p>Pinpoint exactly which risks matter most with tornado charts and tail driver analysis, so teams can focus risk responses where they count.</p>
+            <ul>
+                <li>Spearman rank correlation tornado charts with &ldquo;% var&rdquo; variance share annotation</li>
+                <li>Toggle Sort: EV vs. Sort: Variance Share for different prioritization views</li>
+                <li>Top 3 favorable and adverse tail drivers with fire rate and excess contribution metrics</li>
+                <li>Confidence chips (Reliable/Review/Insufficient) on each tail card show ranking stability</li>
+            </ul>
+        </div>
+        <div class="showcase-img">
+            <img src="images/tail_drivers.png" alt="CASTR Tornado Chart and Tail Driver Analysis with confidence chips">
+        </div>
+    </div>
+
+    <!-- Showcase 12: What-If Sensitivity Analysis -->
+    <div class="showcase-item reverse">
+        <div class="showcase-text">
+            <h3>What-If Sensitivity Analysis</h3>
+            <p>Deactivate one or more risks and instantly re-run the simulation to see exactly how the YOE distribution and contingency shift. Understand each risk's true dollar contribution to the budget recommendation.</p>
+            <ul>
+                <li>Toggle individual risks on/off with one click</li>
+                <li>Live YOE distribution chart updates with the deactivated scenario</li>
+                <li>Side-by-side contingency comparison: live vs. baseline</li>
+                <li>See exact percentage-point and dollar impact per risk</li>
+            </ul>
+        </div>
+        <div class="showcase-img">
+            <img src="images/whatif_sensitivity.png" alt="CASTR What-If Sensitivity analysis showing risk deactivation impact on YOE distribution">
         </div>
     </div>
 </section>
