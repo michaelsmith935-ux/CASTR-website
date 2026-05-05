@@ -619,7 +619,7 @@
 <section class="hero">
     <h1>Cost and Schedule <span>Total Risk</span></h1>
     <p class="hero-sub">Thousands of scenarios. One defensible estimate. Integrated probabilistic cost and schedule risk analysis for highway construction, built on NHI 134205 principles.</p>
-    <p class="hero-tagline">Identify risks, quantify their impact, and measure the value of your mitigation program</p>
+    <p class="hero-tagline">Identify risks, quantify their impact, and measure the value of your risk response program</p>
     <div class="hero-buttons">
         <a id="download-btn" href="https://github.com/michaelsmith935-ux/CASTR/releases" target="_blank" class="btn btn-primary">Download Free Trial</a>
         <a href="purchase.html" class="btn btn-secondary">Purchase License &mdash; TBD</a>
@@ -651,12 +651,12 @@
         <div class="feature-card">
             <div class="feature-icon">&#127943;</div>
             <h3>Tornado &amp; Sensitivity Analysis</h3>
-            <p>Spearman rank correlation tornado charts with variance share annotation. Risk Impact mode shows bar range, mode, and EV markers. Toggle EV vs. variance share sorting across cost CY, cost YOE, and schedule views.</p>
+            <p>Spearman rank correlation tornado charts with &ldquo;% var&rdquo; variance share annotation on every Risk Register row. Risk Impact mode shows bar range, mode, and EV markers. Toggle Sort: EV vs. Sort: Variance Share across cost CY, cost YOE, and schedule views.</p>
         </div>
         <div class="feature-card">
             <div class="feature-icon">&#128200;</div>
             <h3>Tail Driver Analysis</h3>
-            <p>Understand which risks drive extreme outcomes with fire rate comparison, excess contribution metrics, and plain-language interpretations.</p>
+            <p>Understand which risks drive extreme outcomes with fire rate comparison, excess contribution metrics, and plain-language interpretations. Confidence chips (Reliable/Review/Insufficient) on each tail card show whether rankings are stable enough to defend.</p>
         </div>
         <div class="feature-card">
             <div class="feature-icon">&#128176;</div>
@@ -666,7 +666,7 @@
         <div class="feature-card">
             <div class="feature-icon">&#128279;</div>
             <h3>Correlation Analysis</h3>
-            <p>Define cost-cost, schedule-schedule, and cost-schedule cross-pair correlations using a Gaussian copula. Automatic positive-semi-definite matrix repair when user entries are inconsistent, with an achieved-vs-requested correlation report.</p>
+            <p>Define cost-cost, schedule-schedule, and cost-schedule cross-pair correlations using a Gaussian copula with one-to-many entry: multi-select Variable B picker with search, select-all, and conflict handling. Automatic PSD matrix repair via Higham algorithm with an achieved-vs-requested correlation report.</p>
         </div>
         <div class="feature-card">
             <div class="feature-icon">&#128197;</div>
@@ -685,8 +685,8 @@
         </div>
         <div class="feature-card">
             <div class="feature-icon">&#128736;</div>
-            <h3>Risk Mitigation &amp; ROI</h3>
-            <p>Full risk response workflow (Accept/Mitigate/Avoid/Transfer) with mitigation cost, owner, due date, and stale-date warnings. Pre- vs. post-mitigation simulation with overlay charts and ROI table in both CY and YOE-by-scenario views.</p>
+            <h3>Risk Response &amp; ROI</h3>
+            <p>Per-axis PMI response strategies (Threat: Accept/Avoid/Escalate/Mitigate/Transfer; Opportunity: Accept/Enhance/Escalate/Exploit/Share) with response cost, owner, due date, and stale-date warnings. Pre- vs. post-response simulation with overlay charts and ROI table in both CY and YOE-by-scenario views.</p>
         </div>
         <div class="feature-card">
             <div class="feature-icon">&#128293;</div>
@@ -696,7 +696,7 @@
         <div class="feature-card">
             <div class="feature-icon">&#128218;</div>
             <h3>Starter Risk Library</h3>
-            <p>Ship with ~100 pre-built highway construction risks organized by category. Drop risks into any project in seconds and customize from there.</p>
+            <p>Ship with ~100 pre-built highway construction risks organized by category. Drop risks into any project in seconds and customize from there. Import your agency's own risks from Excel with a 3-step wizard (download template, upload, commit).</p>
         </div>
         <div class="feature-card">
             <div class="feature-icon">&#128200;</div>
@@ -751,12 +751,42 @@
         <div class="feature-card">
             <div class="feature-icon">&#128300;</div>
             <h3>What-If Sensitivity</h3>
-            <p>Deactivate risks and instantly see how the YOE distribution and contingency shift using a hybrid recompute engine &mdash; cost-only changes resolve client-side via a leave-one-out impact matrix; schedule-affecting changes trigger a synchronous engine re-run.</p>
+            <p>Deactivate risks and instantly see how the YOE distribution and contingency shift using a hybrid recompute engine &mdash; cost-only changes resolve client-side via a leave-one-out impact matrix; schedule-affecting changes trigger a synchronous engine re-run. Response What-If panel shows the impact of planned risk responses. Duration and Completion Date metric views with per-axis Threat/Opportunity colored chips.</p>
         </div>
         <div class="feature-card">
             <div class="feature-icon">&#128424;</div>
             <h3>Print &amp; Export</h3>
             <p>Word (.docx) report generation with embedded charts at presentation-friendly font sizes. 300 DPI PNG chart downloads for sharp Office insertion. Print-to-PDF with scenario-aware section duplication. CSV/Excel risk register export.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">&#127919;</div>
+            <h3>Joint Confidence</h3>
+            <p>Scatter cloud plotting joint cost vs. completion date outcomes with density contours at 50%, 80%, and 90% confidence. Violet P{budget} curve, draggable crosshairs, and a 5-bullet Distribution Health Assessment panel checking ring tightness, skewness, correlation, and coverage.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">&#128260;</div>
+            <h3>Per-Axis Risk Response</h3>
+            <p>Cost and schedule axes carry independent PMI response strategies. Separate dropdowns for Cost Response and Schedule Response with polarity-appropriate options: Threat (Accept/Avoid/Escalate/Mitigate/Transfer) and Opportunity (Accept/Enhance/Escalate/Exploit/Share).</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">&#9989;</div>
+            <h3>SME-Reviewed Coverage</h3>
+            <p>Track which seeded risks have been ratified by the workshop. Contingency Envelope cards show Seeded vs. SME-Reviewed risk counts with a three-way column (Active/Reviewed/Inactive). Standard view envelope card benchmarks coverage at a glance.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">&#128101;</div>
+            <h3>Per-Risk-Owner Reports</h3>
+            <p>Generate per-owner Print/Word documents so each risk owner gets only their assigned risks. Customizable column selection lets you tailor the report content for different audiences.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">&#128279;</div>
+            <h3>One-to-Many Correlation</h3>
+            <p>Assign the same correlation coefficient from one Variable A to multiple Variable B targets in a single operation. Multi-select picker with search, select-all, and automatic conflict handling when existing pairs are overwritten.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">&#128228;</div>
+            <h3>Starter Library Excel Import</h3>
+            <p>Bulk-load your agency's risk categories and events into the Starter Library from Excel. Three-step wizard: download the template, fill it in, upload and commit. Edits do not affect previously imported risks.</p>
         </div>
     </div>
 </section>
@@ -786,8 +816,8 @@
             </div>
             <div class="method-card">
                 <div class="method-num">4</div>
-                <h4>Simulate &amp; Mitigate</h4>
-                <p>Run Monte Carlo analysis, review tornado charts and tail drivers, define mitigation actions, and compare pre- vs. post-mitigation outcomes with ROI tracking.</p>
+                <h4>Simulate &amp; Respond</h4>
+                <p>Run Monte Carlo analysis, review tornado charts and tail drivers, define risk response actions, and compare pre- vs. post-response outcomes with ROI tracking.</p>
             </div>
         </div>
     </div>
@@ -817,8 +847,8 @@
         </div>
         <div class="feature-card">
             <div class="feature-icon">&#128170;</div>
-            <h3>Mitigate &amp; Measure</h3>
-            <p>Define mitigation actions with residual probability and impact. Run Compare-Both mode to overlay pre/post CDF curves and see the ROI of every mitigation dollar.</p>
+            <h3>Respond &amp; Measure</h3>
+            <p>Define risk response actions with residual probability and impact. Run Compare-Both mode to overlay pre/post CDF curves and see the ROI of every response dollar.</p>
         </div>
     </div>
 </section>
@@ -856,7 +886,8 @@
                 <li>Triangular, BetaPERT, Uniform, Normal, and Constant distributions with live preview</li>
                 <li>Mutually inclusive, mutually exclusive, and project-wide dependency modeling</li>
                 <li>Seed Distribution auto-generates quantitative inputs from triage scores</li>
-                <li>SME-reviewed tracking flags which seeded values have been ratified by the workshop</li>
+                <li>SME-reviewed tracking with Contingency Envelope cards showing Seeded vs. Reviewed coverage</li>
+                <li>Per-axis PMI risk response strategies with independent Cost and Schedule response dropdowns</li>
             </ul>
         </div>
         <div class="showcase-img">
@@ -873,7 +904,7 @@
                 <li>NHI-134205 contingency with prior/fixed cost breakout and inflation-scenario comparison</li>
                 <li>Component Analysis decomposes contingency into Base Variability, Market Conditions, and Risk Register contributions</li>
                 <li>Distribution Health card with coverage traffic light, variance concentration, and skewness/kurtosis</li>
-                <li>Six results tabs: Summary Statistics, Mitigation Analysis, Distributions, Tornado, Tail Drivers, What-If Sensitivity</li>
+                <li>Seven results tabs: Summary Statistics, Response Analysis, Distributions, Tornado, Tail Drivers, Joint Confidence, What-If Sensitivity</li>
             </ul>
         </div>
         <div class="showcase-img">
@@ -902,33 +933,33 @@
     <div class="showcase-item">
         <div class="showcase-text">
             <h3>Sensitivity &amp; Tail Drivers</h3>
-            <p>Pinpoint exactly which risks matter most with tornado charts and tail driver analysis, so teams can focus mitigation where it counts.</p>
+            <p>Pinpoint exactly which risks matter most with tornado charts and tail driver analysis, so teams can focus risk responses where they count.</p>
             <ul>
-                <li>Spearman rank correlation tornado charts</li>
-                <li>Top 3 favorable and adverse tail drivers</li>
-                <li>Fire rate and excess contribution metrics</li>
-                <li>Phase-segment drill-down capability</li>
+                <li>Spearman rank correlation tornado charts with &ldquo;% var&rdquo; variance share annotation</li>
+                <li>Toggle Sort: EV vs. Sort: Variance Share for different prioritization views</li>
+                <li>Top 3 favorable and adverse tail drivers with fire rate and excess contribution metrics</li>
+                <li>Confidence chips (Reliable/Review/Insufficient) on each tail card show ranking stability</li>
             </ul>
         </div>
         <div class="showcase-img">
-            <img src="images/image15.png" alt="CASTR Tornado Chart showing sensitivity analysis">
+            <img src="images/tail_drivers.png" alt="CASTR Tornado Chart and Tail Driver Analysis with confidence chips">
         </div>
     </div>
 
-    <!-- Showcase 6: Risk Mitigation & ROI -->
+    <!-- Showcase 6: Risk Response & ROI -->
     <div class="showcase-item reverse">
         <div class="showcase-text">
-            <h3>Risk Mitigation &amp; ROI Analysis</h3>
-            <p>Go beyond risk identification. Define mitigation actions for each risk, model the residual probability and impact, then run pre- vs. post-mitigation simulations to see exactly how much your mitigation program is worth.</p>
+            <h3>Risk Response &amp; ROI Analysis</h3>
+            <p>Go beyond risk identification. Define per-axis risk response strategies for each risk, model the residual probability and impact, then run pre- vs. post-response simulations to see exactly how much your response program is worth.</p>
             <ul>
-                <li>Per-risk mitigation cost, owner, due date, and residual distributions</li>
+                <li>Per-axis PMI response strategies (Accept/Avoid/Escalate/Mitigate/Transfer for threats; Accept/Enhance/Escalate/Exploit/Share for opportunities)</li>
                 <li>Compare Both mode overlays pre/post CDF curves side by side</li>
-                <li>ROI summary table with net benefit and return ratio per risk</li>
-                <li>Budget-percentile delta markers on comparison charts</li>
+                <li>ROI summary table with net benefit and return ratio per risk, in both CY and YOE-by-scenario views</li>
+                <li>Residual distribution editor with green backshade for post-response impact</li>
             </ul>
         </div>
         <div class="showcase-img">
-            <img src="images/image_mitigation.png" alt="CASTR Mitigation Analysis with pre vs post comparison">
+            <img src="images/response_analysis.png" alt="CASTR Risk Response Analysis with pre vs post comparison">
         </div>
     </div>
 
@@ -987,16 +1018,50 @@
     <div class="showcase-item reverse">
         <div class="showcase-text">
             <h3>Simulation Settings &amp; Run Modes</h3>
-            <p>Fine-tune the Monte Carlo engine with configurable iteration counts (100&ndash;100,000), convergence tolerance, and random seed control. Three run modes let you analyze pre-mitigation, post-mitigation, or compare both side by side.</p>
+            <p>Fine-tune the Monte Carlo engine with configurable iteration counts (100&ndash;100,000), convergence tolerance, and random seed control. Three run modes let you analyze pre-response, post-response, or compare both side by side.</p>
             <ul>
                 <li>Convergence-based early termination with half-vs-half stability testing</li>
-                <li>Pre-Mitigation, Post-Mitigation, and Compare Both modes</li>
+                <li>Pre-Response, Post-Response, and Compare Both run modes</li>
                 <li>Inflation Sensitivity Scenarios with bit-for-bit comparable cached draws</li>
                 <li>Configurable budget percentile (P70 default per NHI-134205)</li>
             </ul>
         </div>
         <div class="showcase-img">
             <img src="images/image_simulation.png" alt="CASTR Simulation Settings with run mode options">
+        </div>
+    </div>
+
+    <!-- Showcase 11: Joint Confidence -->
+    <div class="showcase-item">
+        <div class="showcase-text">
+            <h3>Joint Confidence Analysis</h3>
+            <p>See the full picture of project risk with a joint cost-vs-schedule scatter cloud. Understand how cost and schedule outcomes interact, and find the confidence level where both targets are met simultaneously.</p>
+            <ul>
+                <li>Scatter cloud of YOE Cost vs. Completion Date with density contours at 50%, 80%, and 90%</li>
+                <li>Violet P{budget} curve showing the cost percentile at each completion date</li>
+                <li>Draggable crosshairs to explore joint probability at any cost/date pair</li>
+                <li>5-bullet Distribution Health Assessment panel checking ring tightness, skewness, correlation, and marginal-vs-joint coverage gap</li>
+            </ul>
+        </div>
+        <div class="showcase-img">
+            <img src="images/joint_confidence.png" alt="CASTR Joint Confidence scatter cloud with density contours and health assessment">
+        </div>
+    </div>
+
+    <!-- Showcase 12: SME-Reviewed Coverage -->
+    <div class="showcase-item reverse">
+        <div class="showcase-text">
+            <h3>SME-Reviewed Coverage Tracking</h3>
+            <p>Know exactly how much of your risk portfolio has been vetted by the workshop. The Contingency Envelope cards track Seeded vs. SME-Reviewed risk counts so the team can see at a glance how much review work remains.</p>
+            <ul>
+                <li>Envelope cards compare Seeded EV vs. SME-Reviewed EV</li>
+                <li>Three-way risk count column: Active, Reviewed, and Inactive</li>
+                <li>Standard view envelope card benchmarks coverage against design-stage bands</li>
+                <li>Quantify flag distinguishes which risks graduate to full distributions vs. remain on the Minor Risks list</li>
+            </ul>
+        </div>
+        <div class="showcase-img">
+            <img src="images/sme_reviewed_coverage.png" alt="CASTR SME-Reviewed Coverage with Contingency Envelope cards">
         </div>
     </div>
 </section>
