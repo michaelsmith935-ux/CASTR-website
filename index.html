@@ -110,15 +110,16 @@
             top: 0;
             left: 0;
             width: 200px;
-            height: 140px;
+            height: 64px;
             z-index: 101;
-            border-radius: 0 0 10px 0;
-            box-shadow: 2px 2px 12px rgba(0,0,0,0.25);
+            border-radius: 0;
+            box-shadow: none;
+            background: transparent;
         }
 
         #splash-overlay.settled img {
             object-fit: cover;
-            object-position: center 35%;
+            object-position: center 38%;
         }
 
         body.splash-active {
@@ -1316,9 +1317,9 @@
     var splash = document.getElementById('splash-overlay');
     if (!splash) return;
 
-    // Target dimensions for the settled splash
+    // Target dimensions for the settled splash (matches nav bar height)
     var SETTLED_W = 200;
-    var SETTLED_H = 140;
+    var SETTLED_H = 64;
 
     // After 2.5s on screen, animate the shrink
     setTimeout(function() {
@@ -1343,15 +1344,11 @@
             // Interpolate from full-screen to settled size
             var w = startW + (SETTLED_W - startW) * ease;
             var h = startH + (SETTLED_H - startH) * ease;
-            var t = 0; // top stays 0
-            var l = 0; // left stays 0
-            var br = 10 * ease; // border-radius grows
 
             splash.style.width = w + 'px';
             splash.style.height = h + 'px';
-            splash.style.top = t + 'px';
-            splash.style.left = l + 'px';
-            splash.style.borderRadius = '0 0 ' + br + 'px 0';
+            splash.style.top = '0';
+            splash.style.left = '0';
 
             if (progress < 1) {
                 requestAnimationFrame(animateFrame);
@@ -1362,7 +1359,6 @@
                 splash.style.height = '';
                 splash.style.top = '';
                 splash.style.left = '';
-                splash.style.borderRadius = '';
                 document.body.classList.remove('splash-active');
 
                 // Hide the text logo since the splash graphic now serves as logo
