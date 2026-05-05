@@ -94,47 +94,31 @@
             width: 100vw;
             height: 100vh;
             z-index: 9999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 55%, #2b6cb0 100%);
-            transition: opacity 0.5s ease;
+            overflow: hidden;
         }
 
         #splash-overlay img {
-            width: 100vw;
-            height: 100vh;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
         }
 
-        #splash-overlay.shrinking {
-            animation: splashShrink 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        /* After shrink animation completes, the splash rests in place */
+        #splash-overlay.settled {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 200px;
+            height: 140px;
+            z-index: 101;
+            border-radius: 0 0 10px 0;
+            box-shadow: 2px 2px 12px rgba(0,0,0,0.25);
         }
 
-        @keyframes splashShrink {
-            0% {
-                top: 0; left: 0;
-                width: 100vw; height: 100vh;
-                border-radius: 0;
-                opacity: 1;
-            }
-            70% {
-                top: 64px; left: 0;
-                width: 180px; height: 50px;
-                border-radius: 6px;
-                opacity: 0.85;
-            }
-            100% {
-                top: 64px; left: 0;
-                width: 180px; height: 50px;
-                border-radius: 6px;
-                opacity: 0;
-            }
-        }
-
-        #splash-overlay.shrinking img {
+        #splash-overlay.settled img {
             object-fit: cover;
-            object-position: center 38%;
+            object-position: center 35%;
         }
 
         body.splash-active {
@@ -1332,48 +1316,61 @@
     var splash = document.getElementById('splash-overlay');
     if (!splash) return;
 
-    // Compute the target position: just below the CASTR nav-logo
-    function getLogoTarget() {
-        var logo = document.querySelector('.nav-logo');
-        if (!logo) return { top: 64, left: 16 };
-        var rect = logo.getBoundingClientRect();
-        return { top: rect.bottom + 2, left: rect.left };
-    }
+    // Target dimensions for the settled splash
+    var SETTLED_W = 200;
+    var SETTLED_H = 140;
 
-    // After 2.5s on screen, start the shrink animation
+    // After 2.5s on screen, animate the shrink
     setTimeout(function() {
-        var target = getLogoTarget();
+        var startW = window.innerWidth;
+        var startH = window.innerHeight;
+        var duration = 1200; // ms
+        var startTime = null;
 
-        // Dynamically update the animation endpoint to sit under the nav logo
-        splash.style.setProperty('--target-top', target.top + 'px');
-        splash.style.setProperty('--target-left', target.left + 'px');
+        // Hide the text nav-logo once splash starts settling
+        var navLogo = document.querySelector('.nav-logo');
 
-        // Apply dynamic keyframes
-        var styleEl = document.createElement('style');
-        styleEl.textContent =
-            '@keyframes splashShrink {' +
-            '  0%   { top:0; left:0; width:100vw; height:100vh; border-radius:0; opacity:1; }' +
-            '  60%  { top:' + target.top + 'px; left:' + target.left + 'px; width:160px; height:44px; border-radius:6px; opacity:0.9; }' +
-            '  85%  { top:' + target.top + 'px; left:' + target.left + 'px; width:160px; height:44px; border-radius:6px; opacity:0.7; }' +
-            '  100% { top:' + target.top + 'px; left:' + target.left + 'px; width:160px; height:44px; border-radius:6px; opacity:0; }' +
-            '}';
-        document.head.appendChild(styleEl);
+        function easeOutCubic(t) {
+            return 1 - Math.pow(1 - t, 3);
+        }
 
-        splash.classList.add('shrinking');
+        function animateFrame(timestamp) {
+            if (!startTime) startTime = timestamp;
+            var elapsed = timestamp - startTime;
+            var progress = Math.min(elapsed / duration, 1);
+            var ease = easeOutCubic(progress);
 
-        // Remove splash and unlock scroll after animation ends
-        splash.addEventListener('animationend', function() {
-            splash.remove();
-            document.body.classList.remove('splash-active');
-        });
+            // Interpolate from full-screen to settled size
+            var w = startW + (SETTLED_W - startW) * ease;
+            var h = startH + (SETTLED_H - startH) * ease;
+            var t = 0; // top stays 0
+            var l = 0; // left stays 0
+            var br = 10 * ease; // border-radius grows
 
-        // Fallback removal in case animationend doesn't fire
-        setTimeout(function() {
-            if (splash.parentNode) {
-                splash.remove();
+            splash.style.width = w + 'px';
+            splash.style.height = h + 'px';
+            splash.style.top = t + 'px';
+            splash.style.left = l + 'px';
+            splash.style.borderRadius = '0 0 ' + br + 'px 0';
+
+            if (progress < 1) {
+                requestAnimationFrame(animateFrame);
+            } else {
+                // Animation done — apply settled state
+                splash.classList.add('settled');
+                splash.style.width = '';
+                splash.style.height = '';
+                splash.style.top = '';
+                splash.style.left = '';
+                splash.style.borderRadius = '';
                 document.body.classList.remove('splash-active');
+
+                // Hide the text logo since the splash graphic now serves as logo
+                if (navLogo) navLogo.style.visibility = 'hidden';
             }
-        }, 1500);
+        }
+
+        requestAnimationFrame(animateFrame);
     }, 2500);
 })();
 </script>
