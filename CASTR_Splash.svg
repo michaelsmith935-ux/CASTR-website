@@ -322,12 +322,6 @@
     Built on FHWA / NHI Course 134205 methodology
   </text>
 
-  <!-- Footer right: version -->
-  <text x="1856" y="1032" text-anchor="end"
-        font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif"
-        font-size="16" font-weight="600" letter-spacing="2" fill="#ffffff" opacity="0.55">
-    v2.9.1
-  </text>
 
   <!-- Subtle corner accents -->
   <g stroke="#4299e1" stroke-width="2" fill="none" opacity="0.55">
