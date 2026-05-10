@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>CASTR - Video Library</title>
+    <style>
+        :root {
+            --primary: #1e3a5f;
+            --primary-light: #2c5282;
+            --accent: #3182ce;
+            --accent-bright: #4299e1;
+            --green: #27ae60;
+            --green-hover: #219a52;
+            --bg: #f7fafc;
+            --card-bg: #ffffff;
+            --text: #2d3748;
+            --text-light: #718096;
+            --border: #e2e8f0;
+            --hero-gradient: linear-gradient(135deg, #1e3a5f 0%, #2c5282 50%, #2b6cb0 100%);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: var(--text);
+            line-height: 1.7;
+            background: var(--bg);
+        }
+
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        /* NAV */
+        nav {
+            background: var(--primary);
+            padding: 0 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+
+        .nav-logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+
+        .nav-links a {
+            color: rgba(255,255,255,0.85);
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: white; text-decoration: none; }
+
+        .nav-cta {
+            background: var(--green);
+            color: white !important;
+            padding: 0.5rem 1.25rem;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .nav-cta:hover { background: var(--green-hover); }
+
+        .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
+        .nav-toggle span { display: block; width: 24px; height: 2px; background: white; margin: 5px 0; transition: 0.3s; }
+
+        /* HERO BANNER */
+        .page-hero {
+            background: var(--hero-gradient);
+            color: white;
+            padding: 4rem 2rem 3.5rem;
+            text-align: center;
+        }
+
+        .page-hero h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .page-hero h1 span { color: #90cdf4; }
+
+        .page-hero p {
+            font-size: 1.15rem;
+            color: #e2e8f0;
+            max-width: 750px;
+            margin: 0 auto;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+
+        /* CONTENT */
+        .content {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* VIDEO SECTIONS */
+        .video-section {
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--accent);
+            display: inline-block;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.25rem;
+            margin-top: 1rem;
+        }
+
+        .video-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: transform 0.15s, box-shadow 0.2s;
+            text-decoration: none;
+            color: var(--text);
+        }
+
+        .video-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            text-decoration: none;
+        }
+
+        .video-icon {
+            flex-shrink: 0;
+            width: 48px;
+            height: 48px;
+            background: var(--hero-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.25rem;
+        }
+
+        .video-card h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin: 0;
+        }
+
+        .video-card p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin: 0.2rem 0 0;
+        }
+
+        /* OVERVIEW CARD */
+        .overview-card {
+            background: var(--hero-gradient);
+            border-radius: 12px;
+            padding: 2rem 2.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+            color: white;
+            text-decoration: none;
+            transition: transform 0.15s, box-shadow 0.2s;
+        }
+
+        .overview-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+            text-decoration: none;
+        }
+
+        .overview-icon {
+            flex-shrink: 0;
+            width: 64px;
+            height: 64px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+        }
+
+        .overview-card h2 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin: 0 0 0.25rem;
+        }
+
+        .overview-card p {
+            font-size: 1rem;
+            opacity: 0.85;
+            margin: 0;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--primary);
+            color: rgba(255,255,255,0.7);
+            padding: 3rem 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        footer a { color: rgba(255,255,255,0.85); }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .nav-links { display: none; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: var(--primary); padding: 1rem 2rem; gap: 1rem; }
+            .nav-links.active { display: flex; }
+            .nav-toggle { display: block; }
+            .page-hero h1 { font-size: 1.8rem; }
+            .video-grid { grid-template-columns: 1fr; }
+            .overview-card { flex-direction: column; text-align: center; padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-inner">
+        <a href="index.html" style="text-decoration:none;"><div class="nav-logo">CASTR</div></a>
+        <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')">
+            <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#features">Features</a></li>
+            <li><a href="index.html#methodology">Methodology</a></li>
+            <li><a href="index.html#screenshots">Screenshots</a></li>
+            <li><a href="compare.html">Compare</a></li>
+            <li><a href="index.html#pricing">Pricing</a></li>
+            <li><a href="index.html#faq">FAQ</a></li>
+            <li><a href="Users.Manual.pdf" target="_blank">User Manual</a></li>
+            <li><a href="videos.html">Video Library</a></li>
+            <li><a href="https://github.com/michaelsmith935-ux/CASTR/releases" target="_blank">Download</a></li>
+            <li><a href="purchase.html" class="nav-cta">Purchase License</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="page-hero">
+    <h1>Video <span>Library</span></h1>
+    <p>Step-by-step video tutorials covering every page and feature in CASTR. Click any card to watch the tutorial on Screencast.</p>
+</section>
+
+<div class="content">
+
+    <!-- OVERVIEW VIDEO -->
+    <a href="CASTR%20Video.mp4" target="_blank" class="overview-card">
+        <div class="overview-icon">&#9654;</div>
+        <div>
+            <h2>CASTR Overview</h2>
+            <p>Watch a complete walkthrough of the CASTR program and its capabilities.</p>
+        </div>
+    </a>
+
+    <!-- GETTING STARTED -->
+    <div class="video-section">
+        <h2 class="section-title">Getting Started</h2>
+        <div class="video-grid">
+            <a href="https://app.screencast.com/qDre0j3M81A5F" target="_blank" class="video-card">
+                <div class="video-icon">&#9654;</div>
+                <div>
+                    <h3>All Projects Homepage</h3>
+                    <p>Navigate the project list and create new projects</p>
+                </div>
+            </a>
+            <a href="https://app.screencast.com/E9TEhANMa7PD5" target="_blank" class="video-card">
+                <div class="video-icon">&#9654;</div>
+                <div>
+                    <h3>Project Information</h3>
+                    <p>Set up project details and configuration</p>
+                </div>
+            </a>
+            <a href="https://app.screencast.com/Z5Q9KOZhJVqvX" target="_blank" class="video-card">
+                <div class="video-icon">&#9654;</div>
+                <div>
+                    <h3>Segments and Phases</h3>
+                    <p>Define project segments and construction phases</p>
+                </div>
+            </a>
+            <a href="https://app.screencast.com/53p0JDgeLtIqj" target="_blank" class="video-card">
+                <div class="video-icon">&#9654;</div>
+                <div>
+                    <h3>Inflation Tables</h3>
+                    <p>Configure inflation rate tables for YOE conversion</p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- INPUTS -->
+    <div class="video-section">
+        <h2 class="section-title">Inputs</h2>
+        <div class="video-grid">
+            <a href="https://app.screencast.com/VUvlVlJpgIq43" target="_blank" class="video-card">
+                <div class="video-icon">&#9654;</div>
+                <div>
+                    <h3>Base Variability</h3>
+                    <p>Enter cost and schedule estimates with variability ranges</p>
+                </div>
+            </a>
+            <a href="https://app.screencast.com/oosmsgfHW263T" target="_blank" class="video-card">
+                <div class="video-icon">&#9654;</div>
+                <div>
+                    <h3>Market Conditions</h3>
+                    <p>Model market uncertainty and gap detection</p>
+                </div>
+            </a>
+            <a href="https://app.screencast.com/X7PNolxUsSI7I" target="_blank" class="video-card">
+                <div class="video-icon">&#9654;</div>
+                <div>
+                    <h3>Review Staging</h3>
+                    <p>Set up review stages and predecessor dependencies</p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- RISK ANALYSIS -->
+    <div class="video-section">
+        <h2 class="section-title">Risk Analysis</h2>
+        <div class="video-grid">
+            <a href="https://app.screencast.com/VwZpyMomKb8dI" target="_blank" class="video-card">
+                <div class="video-icon">&#9654;</div>
+                <div>
+                    <h3>Risk Identification Triage View</h3>
+                    <p>Score and triage risks with heat maps</p>
+                </div>
+            </a>
+            <a href="https://app.screencast.com/d5XZTdOwi8D59" target="_blank" class="video-card">
+                <div class="video-icon">&#9654;</div>
+                <div>
+                    <h3>Risk Identification Standard View</h3>
+                    <p>Quantify risks with distribution parameters</p>
+                </div>
+            </a>
+            <a href="https://app.screencast.com/axQxeiu0xAiDF" target="_blank" class="video-card">
+                <div class="video-icon">&#9654;</div>
+                <div>
+                    <h3>Risk Register Standard View</h3>
+                    <p>Manage the full risk register with response strategies</p>
+                </div>
+            </a>
+            <a href="https://app.screencast.com/NNHVtfI6u2nh3" target="_blank" class="video-card">
+                <div class="video-icon">&#9654;</div>
+                <div>
+                    <h3>Correlation</h3>
+                    <p>Define risk correlations and one-to-many assignments</p>
+                </div>
+            </a>
+            <a href="https://app.screencast.com/R9PfmonTQck8L" target="_blank" class="video-card">
+                <div class="video-icon">&#9654;</div>
+                <div>
+                    <h3>Minor Risks</h3>
+                    <p>Handle minor risks with simplified entry</p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- SIMULATION -->
+    <div class="video-section">
+        <h2 class="section-title">Simulation</h2>
+        <div class="video-grid">
+            <a href="https://app.screencast.com/nuzQNfYEaKib6" target="_blank" class="video-card">
+                <div class="video-icon">&#9654;</div>
+                <div>
+                    <h3>Simulation Settings</h3>
+                    <p>Configure iterations, convergence, and run modes</p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- RESULTS -->
+    <div class="video-section">
+        <h2 class="section-title">Results</h2>
+        <div class="video-grid">
+            <a href="https://app.screencast.com/QRKYRynV1QeAZ" target="_blank" class="video-card">
+                <div class="video-icon">&#9654;</div>
+                <div>
+                    <h3>Summary Statistics</h3>
+                    <p>Review contingency analysis and budget recommendations</p>
+                </div>
+            </a>
+            <a href="https://app.screencast.com/wiE3xAyBpWWwq" target="_blank" class="video-card">
+                <div class="video-icon">&#9654;</div>
+                <div>
+                    <h3>Distributions</h3>
+                    <p>Visualize PDF histograms with CDF overlays</p>
+                </div>
+            </a>
+            <a href="https://app.screencast.com/2GPRQXfRQ4nSP" target="_blank" class="video-card">
+                <div class="video-icon">&#9654;</div>
+                <div>
+                    <h3>Joint Confidence Distribution</h3>
+                    <p>Analyze joint cost and schedule confidence scatter clouds</p>
+                </div>
+            </a>
+            <a href="https://app.screencast.com/E5a1fPXQtNV2v" target="_blank" class="video-card">
+                <div class="video-icon">&#9654;</div>
+                <div>
+                    <h3>Response Analysis</h3>
+                    <p>Evaluate risk response effectiveness and ROI</p>
+                </div>
+            </a>
+            <a href="https://app.screencast.com/lpAeyoahzdPSx" target="_blank" class="video-card">
+                <div class="video-icon">&#9654;</div>
+                <div>
+                    <h3>Tornado</h3>
+                    <p>Identify top risk drivers with tornado charts</p>
+                </div>
+            </a>
+            <a href="https://app.screencast.com/VYshEs1Eh5v9v" target="_blank" class="video-card">
+                <div class="video-icon">&#9654;</div>
+                <div>
+                    <h3>Tail Drivers</h3>
+                    <p>Find which risks drive worst-case outcomes</p>
+                </div>
+            </a>
+            <a href="https://app.screencast.com/vjTuIG3zM2rWd" target="_blank" class="video-card">
+                <div class="video-icon">&#9654;</div>
+                <div>
+                    <h3>What-If Sensitivity</h3>
+                    <p>Test scenarios by toggling risks on and off</p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- APPLICATION SETTINGS -->
+    <div class="video-section">
+        <h2 class="section-title">Application Settings</h2>
+        <div class="video-grid">
+            <a href="https://app.screencast.com/201FCb5WKwaT9" target="_blank" class="video-card">
+                <div class="video-icon">&#9654;</div>
+                <div>
+                    <h3>Starter Library</h3>
+                    <p>Manage risk categories and seed events</p>
+                </div>
+            </a>
+            <a href="https://app.screencast.com/eRh73LaAjOREw" target="_blank" class="video-card">
+                <div class="video-icon">&#9654;</div>
+                <div>
+                    <h3>Scoring Tables</h3>
+                    <p>Customize triage scoring scales and bands</p>
+                </div>
+            </a>
+            <a href="https://app.screencast.com/d9lFlgc61Fm8c" target="_blank" class="video-card">
+                <div class="video-icon">&#9654;</div>
+                <div>
+                    <h3>Diagnostics Report</h3>
+                    <p>Generate diagnostic reports for troubleshooting</p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="index.html#features">Features</a>
+        <a href="index.html#pricing">Pricing</a>
+        <a href="purchase.html">Purchase</a>
+        <a href="compare.html">Compare</a>
+        <a href="Users.Manual.pdf" target="_blank">User Manual</a>
+        <a href="https://github.com/michaelsmith935-ux/CASTR/releases" target="_blank">Download</a>
+        <a href="License.txt" target="_blank">License Agreement</a>
+    </div>
+    <p>&copy; 2026 CASTR &mdash; Cost and Schedule Total Risk</p>
+</footer>
+
+</body>
+</html>
