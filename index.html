@@ -588,6 +588,46 @@
             font-size: 1rem;
         }
 
+        /* ========== VALIDATION & QA ========== */
+        .vqa-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .vqa-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.75rem;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        }
+
+        .vqa-card h3 {
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .vqa-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .vqa-intro {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            color: var(--text-light);
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        @media (max-width: 768px) {
+            .vqa-grid { grid-template-columns: 1fr; }
+        }
+
         /* ========== FOOTER ========== */
         footer {
             background: var(--primary);
@@ -1254,6 +1294,36 @@
         <div class="faq-q">
             <h4>I bought CASTR before April 2026. Does this change anything for me?</h4>
             <p>No. Customers who purchased before the upgrade-window model was introduced keep lifetime access to all future versions &mdash; no renewal needed, ever.</p>
+        </div>
+    </div>
+</section>
+
+<!-- VALIDATION & QA -->
+<section class="section" id="validation">
+    <div class="section-header">
+        <h2>Validation &amp; Quality Assurance</h2>
+    </div>
+    <p class="vqa-intro">CASTR was developed by a retired FHWA specialist with 32 years of experience in cost and schedule risk assessment, including direct involvement in developing the federal CSRA model. Every analytical feature has been verified against established methods.</p>
+    <div class="vqa-grid">
+        <div class="vqa-card">
+            <h3>Methodology Verification</h3>
+            <p>CASTR implements the NHI Course 134205 probabilistic risk-based estimating framework. Monte Carlo simulation outputs, contingency calculations, and distribution fitting have been cross-validated against the original FHWA Excel template to confirm numerical agreement. The User Manual documents the mathematical basis for every calculation so results can be independently reproduced.</p>
+        </div>
+        <div class="vqa-card">
+            <h3>Domain Expert Oversight</h3>
+            <p>Every feature, formula, and analytical workflow was specified, reviewed, and validated by the developer based on decades of hands-on experience teaching and applying the PRBE framework across state DOTs. AI-assisted development accelerated the engineering process; the domain expertise and quality standards behind every decision are human.</p>
+        </div>
+        <div class="vqa-card">
+            <h3>Transparency and Reproducibility</h3>
+            <p>CASTR ships with a comprehensive User Manual that explains the methodology, assumptions, and calculations behind every result. Simulation settings are fully configurable, seed control enables reproducible runs, and all results can be exported for independent review. The Diagnostics Report provides a complete audit trail of project configuration and run parameters.</p>
+        </div>
+        <div class="vqa-card">
+            <h3>Security and Distribution</h3>
+            <p>CASTR runs locally on your machine &mdash; no project data is transmitted to external servers. The application is distributed through GitHub Releases with versioned builds. All code is original to CASTR with no third-party open-source library dependencies that would introduce licensing or supply-chain concerns.</p>
+        </div>
+        <div class="vqa-card">
+            <h3>Continuous Improvement</h3>
+            <p>CASTR is under active development with regular releases adding new analytical capabilities. Version history is maintained on GitHub, and the User Manual is updated with each release to document new features and any changes to existing calculations. User feedback from state DOT practitioners and consultants directly informs the development roadmap.</p>
         </div>
     </div>
 </section>
