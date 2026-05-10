@@ -51,7 +51,8 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            height: 64px;
+            min-height: 64px;
+            padding: 0.5rem 0;
         }
 
         .nav-logo {
@@ -61,7 +62,7 @@
             letter-spacing: 1px;
         }
 
-        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links { display: flex; gap: 0.75rem 1.5rem; list-style: none; flex-wrap: wrap; align-items: center; }
 
         .nav-links a {
             color: rgba(255,255,255,0.85);
