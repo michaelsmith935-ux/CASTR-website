@@ -76,6 +76,86 @@
 
         .nav-row2 a:hover { color: white; text-decoration: none; }
 
+        /* SITE SEARCH */
+        .site-search {
+            position: relative;
+            margin-left: 1rem;
+        }
+        .site-search input {
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 20px;
+            color: white;
+            font-size: 0.82rem;
+            padding: 0.3rem 0.75rem 0.3rem 2rem;
+            width: 180px;
+            outline: none;
+            transition: border-color 0.2s, width 0.2s;
+        }
+        .site-search input::placeholder { color: rgba(255,255,255,0.5); }
+        .site-search input:focus { border-color: var(--accent-bright); width: 240px; }
+        .site-search .search-icon {
+            position: absolute;
+            left: 0.6rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255,255,255,0.5);
+            font-size: 0.8rem;
+            pointer-events: none;
+        }
+        .search-results {
+            display: none;
+            position: absolute;
+            top: calc(100% + 6px);
+            right: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+            width: 360px;
+            max-height: 420px;
+            overflow-y: auto;
+            z-index: 200;
+        }
+        .search-results.active { display: block; }
+        .search-results .sr-item {
+            display: block;
+            padding: 0.7rem 1rem;
+            border-bottom: 1px solid var(--border);
+            color: var(--text);
+            text-decoration: none;
+            transition: background 0.15s;
+        }
+        .search-results .sr-item:last-child { border-bottom: none; }
+        .search-results .sr-item:hover { background: #f0f5ff; }
+        .search-results .sr-title {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--primary);
+        }
+        .search-results .sr-section {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            margin-top: 2px;
+        }
+        .search-results .sr-snippet {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            margin-top: 3px;
+            line-height: 1.4;
+        }
+        .search-results .sr-snippet mark {
+            background: #fef3c7;
+            color: var(--text);
+            border-radius: 2px;
+            padding: 0 2px;
+        }
+        .search-results .sr-empty {
+            padding: 1.5rem 1rem;
+            text-align: center;
+            color: var(--text-light);
+            font-size: 0.85rem;
+        }
+
         .nav-logo {
             color: white;
             font-size: 1.5rem;
@@ -725,6 +805,11 @@
         <a href="#validation">Validation &amp; Quality Assurance</a>
         <a href="Users.Manual.pdf" target="_blank">User Manual</a>
         <a href="videos.html">Video Library</a>
+        <div class="site-search">
+            <span class="search-icon">&#128269;</span>
+            <input type="text" id="site-search-input" placeholder="Search site..." autocomplete="off">
+            <div class="search-results" id="search-results"></div>
+        </div>
     </div>
 </nav>
 
@@ -1487,6 +1572,183 @@
 
         requestAnimationFrame(animateFrame);
     }, 2500);
+})();
+</script>
+
+<script>
+(function(){
+    var index = [];
+
+    function buildIndex(){
+        // Index feature cards
+        document.querySelectorAll('.feature-card').forEach(function(card){
+            var h3 = card.querySelector('h3');
+            var p = card.querySelector('p');
+            if(!h3) return;
+            var section = card.closest('section');
+            var sectionId = section ? section.id : '';
+            var sectionName = '';
+            if(section){
+                var h2 = section.querySelector('h2');
+                if(h2) sectionName = h2.textContent.trim();
+            }
+            index.push({
+                title: h3.textContent.trim(),
+                text: p ? p.textContent.trim() : '',
+                section: sectionName || 'Features',
+                url: sectionId ? '#' + sectionId : '#features',
+                el: card
+            });
+        });
+
+        // Index showcase items
+        document.querySelectorAll('.showcase-item').forEach(function(item){
+            var h3 = item.querySelector('h3');
+            var p = item.querySelector('p');
+            var lis = item.querySelectorAll('li');
+            var liText = [];
+            lis.forEach(function(li){ liText.push(li.textContent.trim()); });
+            if(!h3) return;
+            index.push({
+                title: h3.textContent.trim(),
+                text: (p ? p.textContent.trim() : '') + ' ' + liText.join(' '),
+                section: 'Screenshots & Details',
+                url: '#screenshots',
+                el: item
+            });
+        });
+
+        // Index FAQ items
+        document.querySelectorAll('.faq-item').forEach(function(item){
+            var q = item.querySelector('.faq-q');
+            var a = item.querySelector('.faq-a');
+            if(!q) return;
+            index.push({
+                title: q.textContent.trim(),
+                text: a ? a.textContent.trim() : '',
+                section: 'FAQ',
+                url: '#faq',
+                el: item
+            });
+        });
+
+        // Index Validation cards
+        document.querySelectorAll('.vqa-card').forEach(function(card){
+            var h3 = card.querySelector('h3');
+            var p = card.querySelector('p');
+            if(!h3) return;
+            index.push({
+                title: h3.textContent.trim(),
+                text: p ? p.textContent.trim() : '',
+                section: 'Validation & QA',
+                url: '#validation',
+                el: card
+            });
+        });
+
+        // Index major sections
+        document.querySelectorAll('section[id]').forEach(function(sec){
+            var h2 = sec.querySelector('h2');
+            if(!h2) return;
+            var p = sec.querySelector('p');
+            index.push({
+                title: h2.textContent.trim(),
+                text: p ? p.textContent.trim() : '',
+                section: 'Section',
+                url: '#' + sec.id,
+                el: sec
+            });
+        });
+
+        // Add cross-page links
+        index.push({title:'Compare CASTR', text:'Compare CASTR to spreadsheet-based risk analysis tools, side-by-side feature comparison', section:'Page', url:'compare.html', el:null});
+        index.push({title:'Video Library', text:'Step-by-step video tutorials covering every page and feature in CASTR on Screencast', section:'Page', url:'videos.html', el:null});
+        index.push({title:'User Manual', text:'CASTR user manual PDF documentation download', section:'Document', url:'Users.Manual.pdf', el:null});
+    }
+
+    function highlightSnippet(text, query, maxLen){
+        var lower = text.toLowerCase();
+        var qLower = query.toLowerCase();
+        var pos = lower.indexOf(qLower);
+        if(pos === -1) return text.substring(0, maxLen) + (text.length > maxLen ? '...' : '');
+        var start = Math.max(0, pos - 40);
+        var end = Math.min(text.length, pos + query.length + 60);
+        var snippet = (start > 0 ? '...' : '') + text.substring(start, end) + (end < text.length ? '...' : '');
+        var re = new RegExp('(' + query.replace(/[.*+?^${}()|[\]\\]/g,'\\$&') + ')', 'gi');
+        return snippet.replace(re, '<mark>$1</mark>');
+    }
+
+    function doSearch(query){
+        var results = document.getElementById('search-results');
+        if(!query || query.length < 2){
+            results.classList.remove('active');
+            return;
+        }
+        var q = query.toLowerCase();
+        var matches = [];
+        index.forEach(function(item){
+            var titleMatch = item.title.toLowerCase().indexOf(q) !== -1;
+            var textMatch = item.text.toLowerCase().indexOf(q) !== -1;
+            if(titleMatch || textMatch){
+                matches.push({item: item, titleMatch: titleMatch});
+            }
+        });
+        // Sort: title matches first
+        matches.sort(function(a,b){ return (b.titleMatch?1:0) - (a.titleMatch?1:0); });
+        matches = matches.slice(0, 12);
+
+        if(matches.length === 0){
+            results.innerHTML = '<div class="sr-empty">No results for &ldquo;' + query.replace(/</g,'&lt;') + '&rdquo;</div>';
+        } else {
+            var html = '';
+            matches.forEach(function(m){
+                var isExternal = m.item.url.indexOf('.html') !== -1 || m.item.url.indexOf('.pdf') !== -1;
+                var target = isExternal ? ' target="_blank"' : '';
+                html += '<a class="sr-item" href="' + m.item.url + '"' + target + '>';
+                html += '<div class="sr-title">' + m.item.title + '</div>';
+                html += '<div class="sr-section">' + m.item.section + '</div>';
+                if(m.item.text){
+                    html += '<div class="sr-snippet">' + highlightSnippet(m.item.text, query, 100) + '</div>';
+                }
+                html += '</a>';
+            });
+            results.innerHTML = html;
+        }
+        results.classList.add('active');
+
+        // Clicking a result closes the dropdown and scrolls/highlights
+        results.querySelectorAll('.sr-item').forEach(function(link){
+            link.addEventListener('click', function(){
+                results.classList.remove('active');
+                document.getElementById('site-search-input').value = '';
+                var item = matches.find(function(m){ return m.item.url === link.getAttribute('href'); });
+                if(item && item.item.el){
+                    item.item.el.style.transition = 'box-shadow 0.3s';
+                    item.item.el.style.boxShadow = '0 0 0 3px var(--accent-bright)';
+                    setTimeout(function(){ item.item.el.style.boxShadow = ''; }, 2000);
+                }
+            });
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', function(){
+        buildIndex();
+        var input = document.getElementById('site-search-input');
+        input.addEventListener('input', function(){ doSearch(this.value.trim()); });
+        input.addEventListener('keydown', function(e){
+            if(e.key === 'Escape'){
+                document.getElementById('search-results').classList.remove('active');
+                this.value = '';
+                this.blur();
+            }
+        });
+        // Close results when clicking outside
+        document.addEventListener('click', function(e){
+            if(!e.target.closest('.site-search')){
+                document.getElementById('search-results').classList.remove('active');
+            }
+        });
+    });
 })();
 </script>
 

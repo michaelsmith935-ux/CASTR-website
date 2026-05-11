@@ -76,6 +76,47 @@
 
         .nav-row2 a:hover { color: white; text-decoration: none; }
 
+        /* SITE SEARCH */
+        .site-search {
+            position: relative;
+            margin-left: 1rem;
+        }
+        .site-search input {
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 20px;
+            color: white;
+            font-size: 0.82rem;
+            padding: 0.3rem 0.75rem 0.3rem 2rem;
+            width: 180px;
+            outline: none;
+            transition: border-color 0.2s, width 0.2s;
+        }
+        .site-search input::placeholder { color: rgba(255,255,255,0.5); }
+        .site-search input:focus { border-color: var(--accent-bright); width: 240px; }
+        .site-search .search-icon {
+            position: absolute; left: 0.6rem; top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255,255,255,0.5); font-size: 0.8rem; pointer-events: none;
+        }
+        .search-results {
+            display: none; position: absolute; top: calc(100% + 6px); right: 0;
+            background: white; border-radius: 8px; box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+            width: 360px; max-height: 420px; overflow-y: auto; z-index: 200;
+        }
+        .search-results.active { display: block; }
+        .search-results .sr-item {
+            display: block; padding: 0.7rem 1rem; border-bottom: 1px solid var(--border);
+            color: var(--text); text-decoration: none; transition: background 0.15s;
+        }
+        .search-results .sr-item:last-child { border-bottom: none; }
+        .search-results .sr-item:hover { background: #f0f5ff; }
+        .search-results .sr-title { font-weight: 600; font-size: 0.9rem; color: var(--primary); }
+        .search-results .sr-section { font-size: 0.75rem; color: var(--text-light); margin-top: 2px; }
+        .search-results .sr-snippet { font-size: 0.8rem; color: var(--text-light); margin-top: 3px; line-height: 1.4; }
+        .search-results .sr-snippet mark { background: #fef3c7; color: var(--text); border-radius: 2px; padding: 0 2px; }
+        .search-results .sr-empty { padding: 1.5rem 1rem; text-align: center; color: var(--text-light); font-size: 0.85rem; }
+
         .nav-logo {
             color: white;
             font-size: 1.5rem;
@@ -305,6 +346,11 @@
         <a href="index.html#validation">Validation &amp; Quality Assurance</a>
         <a href="Users.Manual.pdf" target="_blank">User Manual</a>
         <a href="videos.html">Video Library</a>
+        <div class="site-search">
+            <span class="search-icon">&#128269;</span>
+            <input type="text" id="site-search-input" placeholder="Search site..." autocomplete="off">
+            <div class="search-results" id="search-results"></div>
+        </div>
     </div>
 </nav>
 
@@ -544,6 +590,92 @@
     </div>
     <p>&copy; 2026 CASTR &mdash; Cost and Schedule Total Risk</p>
 </footer>
+
+<script>
+(function(){
+    var index = [];
+    function buildIndex(){
+        // Index video cards on this page
+        document.querySelectorAll('.video-card, .overview-card').forEach(function(card){
+            var h3 = card.querySelector('h3, .vc-title');
+            var p = card.querySelector('p, .vc-desc');
+            var section = card.closest('.video-section');
+            var secTitle = section ? section.querySelector('.section-title') : null;
+            index.push({
+                title: h3 ? h3.textContent.trim() : 'Video',
+                text: p ? p.textContent.trim() : '',
+                section: secTitle ? secTitle.textContent.trim() : 'Video Library',
+                url: card.closest('a') ? card.closest('a').href : '#',
+                el: card
+            });
+        });
+        // Cross-site links
+        var crossLinks = [
+            {title:'Features', text:'Monte Carlo simulation, distribution charts, tornado analysis, risk response, starter library', section:'Home', url:'index.html#features'},
+            {title:'Methodology', text:'FHWA NHI Course 134205 probabilistic risk-based estimating', section:'Home', url:'index.html#methodology'},
+            {title:'Screenshots', text:'See CASTR in action, project management, base cost variability, market conditions', section:'Home', url:'index.html#screenshots'},
+            {title:'Compare', text:'Compare CASTR to spreadsheet-based risk analysis tools', section:'Page', url:'compare.html'},
+            {title:'Pricing', text:'Perpetual licensing, free trial, renewal', section:'Home', url:'index.html#pricing'},
+            {title:'FAQ', text:'Frequently asked questions about CASTR', section:'Home', url:'index.html#faq'},
+            {title:'Validation & QA', text:'Methodology verification, domain expert oversight, transparency, security', section:'Home', url:'index.html#validation'},
+            {title:'User Manual', text:'CASTR user manual PDF documentation', section:'Document', url:'Users.Manual.pdf'}
+        ];
+        crossLinks.forEach(function(c){ c.el = null; index.push(c); });
+    }
+    function highlightSnippet(text, query, maxLen){
+        var lower = text.toLowerCase(), qLower = query.toLowerCase(), pos = lower.indexOf(qLower);
+        if(pos === -1) return text.substring(0, maxLen) + (text.length > maxLen ? '...' : '');
+        var start = Math.max(0, pos - 40), end = Math.min(text.length, pos + query.length + 60);
+        var snippet = (start > 0 ? '...' : '') + text.substring(start, end) + (end < text.length ? '...' : '');
+        return snippet.replace(new RegExp('(' + query.replace(/[.*+?^${}()|[\]\\]/g,'\\$&') + ')', 'gi'), '<mark>$1</mark>');
+    }
+    function doSearch(query){
+        var results = document.getElementById('search-results');
+        if(!query || query.length < 2){ results.classList.remove('active'); return; }
+        var q = query.toLowerCase(), matches = [];
+        index.forEach(function(item){
+            var tm = item.title.toLowerCase().indexOf(q) !== -1, xm = item.text.toLowerCase().indexOf(q) !== -1;
+            if(tm || xm) matches.push({item:item, titleMatch:tm});
+        });
+        matches.sort(function(a,b){ return (b.titleMatch?1:0) - (a.titleMatch?1:0); });
+        matches = matches.slice(0, 12);
+        if(matches.length === 0){
+            results.innerHTML = '<div class="sr-empty">No results for &ldquo;' + query.replace(/</g,'&lt;') + '&rdquo;</div>';
+        } else {
+            var html = '';
+            matches.forEach(function(m){
+                var ext = m.item.url.indexOf('.html') !== -1 || m.item.url.indexOf('.pdf') !== -1 || m.item.url.indexOf('screencast') !== -1;
+                html += '<a class="sr-item" href="' + m.item.url + '"' + (ext ? ' target="_blank"' : '') + '>';
+                html += '<div class="sr-title">' + m.item.title + '</div>';
+                html += '<div class="sr-section">' + m.item.section + '</div>';
+                if(m.item.text) html += '<div class="sr-snippet">' + highlightSnippet(m.item.text, query, 100) + '</div>';
+                html += '</a>';
+            });
+            results.innerHTML = html;
+        }
+        results.classList.add('active');
+        results.querySelectorAll('.sr-item').forEach(function(link){
+            link.addEventListener('click', function(){
+                results.classList.remove('active');
+                document.getElementById('site-search-input').value = '';
+                var item = matches.find(function(m){ return m.item.url === link.getAttribute('href'); });
+                if(item && item.item.el){
+                    item.item.el.style.transition = 'box-shadow 0.3s';
+                    item.item.el.style.boxShadow = '0 0 0 3px var(--accent-bright)';
+                    setTimeout(function(){ item.item.el.style.boxShadow = ''; }, 2000);
+                }
+            });
+        });
+    }
+    document.addEventListener('DOMContentLoaded', function(){
+        buildIndex();
+        var input = document.getElementById('site-search-input');
+        input.addEventListener('input', function(){ doSearch(this.value.trim()); });
+        input.addEventListener('keydown', function(e){ if(e.key==='Escape'){ document.getElementById('search-results').classList.remove('active'); this.value=''; this.blur(); }});
+        document.addEventListener('click', function(e){ if(!e.target.closest('.site-search')) document.getElementById('search-results').classList.remove('active'); });
+    });
+})();
+</script>
 
 </body>
 </html>
