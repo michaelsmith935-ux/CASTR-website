@@ -776,7 +776,7 @@
       gtag('config', 'G-JXBWFSKGJ0');
     </script>
 </head>
-<body class="splash-active">
+<body>
 
 <!-- SPLASH SCREEN -->
 <div id="splash-overlay">
@@ -1515,63 +1515,14 @@
     });
 </script>
 
-<!-- Splash screen controller -->
+<!-- Splash screen controller (animation temporarily disabled — starts in settled position) -->
 <script>
 (function() {
     var splash = document.getElementById('splash-overlay');
     if (!splash) return;
-
-    // Target dimensions for the settled splash (matches nav bar height)
-    var SETTLED_W = 140;
-    var SETTLED_H = 64;
-
-    // After 2.5s on screen, animate the shrink
-    setTimeout(function() {
-        var startW = window.innerWidth;
-        var startH = window.innerHeight;
-        var duration = 1200; // ms
-        var startTime = null;
-
-        // Hide the text nav-logo once splash starts settling
-        var navLogo = document.querySelector('.nav-logo');
-
-        function easeOutCubic(t) {
-            return 1 - Math.pow(1 - t, 3);
-        }
-
-        function animateFrame(timestamp) {
-            if (!startTime) startTime = timestamp;
-            var elapsed = timestamp - startTime;
-            var progress = Math.min(elapsed / duration, 1);
-            var ease = easeOutCubic(progress);
-
-            // Interpolate from full-screen to settled size
-            var w = startW + (SETTLED_W - startW) * ease;
-            var h = startH + (SETTLED_H - startH) * ease;
-
-            splash.style.width = w + 'px';
-            splash.style.height = h + 'px';
-            splash.style.top = '0';
-            splash.style.left = '0';
-
-            if (progress < 1) {
-                requestAnimationFrame(animateFrame);
-            } else {
-                // Animation done — apply settled state
-                splash.classList.add('settled');
-                splash.style.width = '';
-                splash.style.height = '';
-                splash.style.top = '';
-                splash.style.left = '';
-                document.body.classList.remove('splash-active');
-
-                // Hide the text logo since the splash graphic now serves as logo
-                if (navLogo) navLogo.style.visibility = 'hidden';
-            }
-        }
-
-        requestAnimationFrame(animateFrame);
-    }, 2500);
+    splash.classList.add('settled');
+    var navLogo = document.querySelector('.nav-logo');
+    if (navLogo) navLogo.style.visibility = 'hidden';
 })();
 </script>
 
