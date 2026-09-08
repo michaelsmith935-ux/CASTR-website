@@ -6,7 +6,7 @@
     <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>CASTR - Video Library</title>
+    <title>CASTR - Spreadsheet</title>
     <style>
         :root {
             --primary: #1e3a5f;
@@ -320,6 +320,39 @@
             .video-grid { grid-template-columns: 1fr; }
             .overview-card { flex-direction: column; text-align: center; padding: 1.5rem; }
         }
+
+        /* SPREADSHEET PAGE */
+        .lead { font-size: 1.05rem; max-width: 900px; margin: 0 auto 2.5rem; text-align: center; color: var(--text); }
+        .dl-card { cursor: pointer; }
+        .dl-card .dl-meta { font-size: 0.85rem; opacity: 0.8; margin-top: 0.5rem; }
+        .dl-card .dl-btn {
+            margin-left: auto; flex-shrink: 0; background: var(--green); color: white; font-weight: 700;
+            padding: 0.75rem 1.5rem; border-radius: 8px; white-space: nowrap; transition: background 0.2s;
+        }
+        .dl-card:hover .dl-btn { background: var(--green-hover); }
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 3rem; }
+        .info-box {
+            background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; padding: 1.75rem 2rem;
+        }
+        .info-box h3 { color: var(--primary); font-size: 1.15rem; margin-bottom: 0.75rem; }
+        .info-box ul { padding-left: 1.25rem; }
+        .info-box li { margin-bottom: 0.4rem; }
+        .price-table { width: 100%; border-collapse: collapse; margin-top: 0.5rem; }
+        .price-table th, .price-table td { text-align: left; padding: 0.6rem 0.5rem; border-bottom: 1px solid var(--border); }
+        .price-table th { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-light); }
+        .price-table .price { font-weight: 700; color: var(--green); white-space: nowrap; }
+        .price-table .price.tbd { color: var(--text-light); }
+        .steps { counter-reset: step; list-style: none; padding: 0; }
+        .steps li { position: relative; padding-left: 3rem; margin-bottom: 1rem; }
+        .steps li::before {
+            counter-increment: step; content: counter(step);
+            position: absolute; left: 0; top: 0; width: 2rem; height: 2rem; border-radius: 50%;
+            background: var(--hero-gradient); color: white; font-weight: 700;
+            display: flex; align-items: center; justify-content: center; font-size: 0.9rem;
+        }
+        .sheet-card .video-icon { font-size: 0.85rem; font-weight: 700; letter-spacing: 0.5px; }
+        .note { background: #fffbeb; border: 1px solid #fde68a; border-radius: 8px; padding: 1rem 1.25rem; font-size: 0.92rem; margin-top: 1rem; }
+        @media (max-width: 768px) { .two-col { grid-template-columns: 1fr; } .dl-card .dl-btn { margin-left: 0; } }
     </style>
 </head>
 <body>
@@ -357,222 +390,240 @@
 
 <!-- HERO -->
 <section class="page-hero">
-    <h1>Video <span>Library</span></h1>
-    <p>Step-by-step video tutorials covering every page and feature in CASTR. Click any card to watch the tutorial on Screencast.</p>
+    <h1>CASTR <span>Spreadsheet</span></h1>
+    <p>The Excel edition of CASTR. A macro-enabled workbook that brings much of the CASTR application's probabilistic cost and schedule risk analysis into a familiar spreadsheet &mdash; and it's free.</p>
 </section>
 
 <div class="content">
 
-    <!-- OVERVIEW VIDEO -->
-    <a href="CASTR%20Video.mp4" target="_blank" class="overview-card">
-        <div class="overview-icon">&#9654;</div>
+    <!-- DOWNLOAD -->
+    <a href="CASTR%20Spreadsheet%2074.0.0.xlsm" download="CASTR Spreadsheet 74.0.0.xlsm" class="overview-card dl-card">
+        <div class="overview-icon">&#128202;</div>
         <div>
-            <h2>CASTR Overview</h2>
-            <p>Watch a complete walkthrough of the CASTR program and its capabilities.</p>
+            <h2>Download the CASTR Spreadsheet</h2>
+            <p>CASTR Spreadsheet 74.0.0.xlsm &mdash; macro-enabled Excel workbook (.xlsm)</p>
+            <p class="dl-meta">Version 74.0.0 &bull; approx. 8.6 MB &bull; Free &bull; Windows desktop Excel (32-bit or 64-bit)</p>
         </div>
+        <span class="dl-btn">&#11015; Download Free</span>
     </a>
+
+    <p class="lead">CASTR Spreadsheet runs a Monte Carlo cost and schedule risk simulation entirely inside Excel. You document the project, structure the estimate, enter base uncertainty and a quantified risk register, then run the simulation to get confidence-based (P-level) budgets, contingency by source, year-of-expenditure conversion, sensitivity and tornado analysis, tail drivers, what-if testing and a joint cost&ndash;schedule confidence chart. It follows the same FHWA NHI Course 134205 methodology as the CASTR application.</p>
+
+    <div class="two-col">
+        <div class="info-box">
+            <h3>Pricing</h3>
+            <table class="price-table">
+                <tr><th>Item</th><th>Price</th></tr>
+                <tr><td>CASTR Spreadsheet</td><td class="price">Free</td></tr>
+                <tr><td>CASTR Perpetual License</td><td class="price">Free</td></tr>
+                <tr><td>Renew Upgrade Coverage</td><td class="price tbd">TBD</td></tr>
+            </table>
+            <p style="font-size:0.85rem; color:var(--text-light); margin-top:0.75rem;">The spreadsheet and the perpetual license are free. Renewing upgrade coverage is optional and not free; pricing will be announced. See <a href="index.html#pricing">Pricing</a> for how upgrade coverage works.</p>
+        </div>
+        <div class="info-box">
+            <h3>Requirements &amp; Notes</h3>
+            <ul>
+                <li>Microsoft Excel for Windows (desktop) with macros enabled. Works with both 32-bit and 64-bit Excel.</li>
+                <li>Not compatible with the Bluebeam Excel add-in while it is active &mdash; disable it before opening.</li>
+                <li>Use only one active CASTR workbook at a time.</li>
+                <li>Run the tool directly from the worksheets or from the CASTR add-in menu and Switchboard.</li>
+                <li>Color coding on the About sheet identifies user inputs, CASTR outputs, calculated values, QC checks and errors.</li>
+            </ul>
+        </div>
+    </div>
 
     <!-- GETTING STARTED -->
     <div class="video-section">
         <h2 class="section-title">Getting Started</h2>
-        <div class="video-grid">
-            <a href="https://app.screencast.com/qDre0j3M81A5F" target="_blank" class="video-card">
-                <div class="video-icon">&#9654;</div>
-                <div>
-                    <h3>All Projects Homepage</h3>
-                    <p>Navigate the project list and create new projects</p>
-                </div>
-            </a>
-            <a href="https://app.screencast.com/E9TEhANMa7PD5" target="_blank" class="video-card">
-                <div class="video-icon">&#9654;</div>
-                <div>
-                    <h3>Project Information</h3>
-                    <p>Set up project details and configuration</p>
-                </div>
-            </a>
-            <a href="https://app.screencast.com/Z5Q9KOZhJVqvX" target="_blank" class="video-card">
-                <div class="video-icon">&#9654;</div>
-                <div>
-                    <h3>Segments and Phases</h3>
-                    <p>Define project segments and construction phases</p>
-                </div>
-            </a>
-            <a href="https://app.screencast.com/53p0JDgeLtIqj" target="_blank" class="video-card">
-                <div class="video-icon">&#9654;</div>
-                <div>
-                    <h3>Inflation Tables</h3>
-                    <p>Configure inflation rate tables for YOE conversion</p>
-                </div>
-            </a>
-        </div>
+        <ol class="steps">
+            <li><strong>Download</strong> the workbook using the button above and save it to a local folder (not a network or cloud-synced location the first time you open it).</li>
+            <li><strong>Unblock the file.</strong> Windows marks files downloaded from the internet and Excel will silently disable their macros. Right-click the .xlsm file &rarr; <em>Properties</em> &rarr; check <em>Unblock</em> &rarr; <em>OK</em>.</li>
+            <li><strong>Open in Excel</strong> and click <em>Enable Content</em> when prompted, then read and accept the Disclaimer sheet.</li>
+            <li><strong>Work the sheets in order</strong> &mdash; Home &rarr; Names &rarr; Inflation &rarr; Structured Estimate &rarr; Base Uncertainty &rarr; Risk Identification &rarr; Risk Register &rarr; Simulation Settings &mdash; then run the simulation and review the results sheets.</li>
+            <li><strong>Learn more:</strong> the <a href="Users.Manual.pdf" target="_blank">User Manual</a> and the <a href="videos.html">Video Library</a> cover the same methodology and workflow used in the workbook.</li>
+        </ol>
+        <div class="note"><strong>Pre-simulation checks.</strong> The Simulation Settings sheet runs QC checks (risk costs and schedules assigned, Risk ID synchronized with the Risk Register, base uncertainty complete) and flags any that are not OK before you run the simulation.</div>
     </div>
 
-    <!-- INPUTS -->
+    <!-- INPUT SHEETS -->
     <div class="video-section">
-        <h2 class="section-title">Inputs</h2>
+        <h2 class="section-title">Input Sheets</h2>
         <div class="video-grid">
-            <a href="https://app.screencast.com/VUvlVlJpgIq43" target="_blank" class="video-card">
-                <div class="video-icon">&#9654;</div>
+            <div class="video-card sheet-card">
+                <div class="video-icon">HOME</div>
                 <div>
-                    <h3>Base Variability</h3>
-                    <p>Enter cost and schedule estimates with variability ranges</p>
+                    <h3>Home</h3>
+                    <p>Project information, review dates, team roles, project complexity and the AASHTO sliding-scale contingency range for your % design completion.</p>
                 </div>
-            </a>
-            <a href="https://app.screencast.com/oosmsgfHW263T" target="_blank" class="video-card">
-                <div class="video-icon">&#9654;</div>
+            </div>
+            <div class="video-card sheet-card">
+                <div class="video-icon">NAME</div>
                 <div>
-                    <h3>Market Conditions</h3>
-                    <p>Model market uncertainty and gap detection</p>
+                    <h3>Names</h3>
+                    <p>Define project segments, phases (PE, RW, CN, UT, etc.), inflation-table assignments and risk categories.</p>
                 </div>
-            </a>
-            <a href="https://app.screencast.com/X7PNolxUsSI7I" target="_blank" class="video-card">
-                <div class="video-icon">&#9654;</div>
+            </div>
+            <div class="video-card sheet-card">
+                <div class="video-icon">INFL</div>
                 <div>
-                    <h3>Review Staging</h3>
-                    <p>Set up review stages and predecessor dependencies</p>
+                    <h3>Inflation</h3>
+                    <p>Compound inflation tables by phase with cumulative year/month factors used for year-of-expenditure (YOE) conversion.</p>
                 </div>
-            </a>
-        </div>
-    </div>
-
-    <!-- RISK ANALYSIS -->
-    <div class="video-section">
-        <h2 class="section-title">Risk Analysis</h2>
-        <div class="video-grid">
-            <a href="https://app.screencast.com/VwZpyMomKb8dI" target="_blank" class="video-card">
-                <div class="video-icon">&#9654;</div>
+            </div>
+            <div class="video-card sheet-card">
+                <div class="video-icon">EST</div>
                 <div>
-                    <h3>Risk Identification Triage View</h3>
-                    <p>Score and triage risks with heat maps</p>
+                    <h3>Structured Estimate</h3>
+                    <p>Roll the sponsor's estimate into cost phases: base cost, traditional contingency, prior and fixed costs, inflation point and dates.</p>
                 </div>
-            </a>
-            <a href="https://app.screencast.com/d5XZTdOwi8D59" target="_blank" class="video-card">
-                <div class="video-icon">&#9654;</div>
+            </div>
+            <div class="video-card sheet-card">
+                <div class="video-icon">BASE</div>
                 <div>
-                    <h3>Risk Identification Standard View</h3>
-                    <p>Quantify risks with distribution parameters</p>
+                    <h3>Base Uncertainty</h3>
+                    <p>Base variability and market-condition ranges by phase-segment, plus the schedule duration analysis that feeds the simulation.</p>
                 </div>
-            </a>
-            <a href="https://app.screencast.com/axQxeiu0xAiDF" target="_blank" class="video-card">
-                <div class="video-icon">&#9654;</div>
+            </div>
+            <div class="video-card sheet-card">
+                <div class="video-icon">ADJ</div>
                 <div>
-                    <h3>Risk Register Standard View</h3>
-                    <p>Manage the full risk register with response strategies</p>
+                    <h3>Adjustments</h3>
+                    <p>Track pre-review vs. post-review estimate changes line by line with an audited net-adjustment total.</p>
                 </div>
-            </a>
-            <a href="https://app.screencast.com/NNHVtfI6u2nh3" target="_blank" class="video-card">
-                <div class="video-icon">&#9654;</div>
+            </div>
+            <div class="video-card sheet-card">
+                <div class="video-icon">RID</div>
                 <div>
-                    <h3>Correlation</h3>
-                    <p>Define risk correlations and one-to-many assignments</p>
+                    <h3>Risk Identification</h3>
+                    <p>Workshop capture sheet: category, phase-segment impacted, description, response, dependency and probability. Syncs to the register.</p>
                 </div>
-            </a>
-            <a href="https://app.screencast.com/R9PfmonTQck8L" target="_blank" class="video-card">
-                <div class="video-icon">&#9654;</div>
+            </div>
+            <div class="video-card sheet-card">
+                <div class="video-icon">REG</div>
+                <div>
+                    <h3>Risk Register</h3>
+                    <p>Quantified cost and schedule impacts (min / most likely / max), risk status, dependencies and parent/prerequisite probability logic.</p>
+                </div>
+            </div>
+            <div class="video-card sheet-card">
+                <div class="video-icon">MIN</div>
                 <div>
                     <h3>Minor Risks</h3>
-                    <p>Handle minor risks with simplified entry</p>
+                    <p>Aggregate small risks below a mean-value threshold so they are carried without cluttering the register.</p>
                 </div>
-            </a>
-        </div>
-    </div>
-
-    <!-- SIMULATION -->
-    <div class="video-section">
-        <h2 class="section-title">Simulation</h2>
-        <div class="video-grid">
-            <a href="https://app.screencast.com/nuzQNfYEaKib6" target="_blank" class="video-card">
-                <div class="video-icon">&#9654;</div>
+            </div>
+            <div class="video-card sheet-card">
+                <div class="video-icon">LINK</div>
+                <div>
+                    <h3>Predecessor Links</h3>
+                    <p>Phase-segment predecessor/successor links with lag so schedule delays propagate downstream.</p>
+                </div>
+            </div>
+            <div class="video-card sheet-card">
+                <div class="video-icon">CORR</div>
+                <div>
+                    <h3>Correlation</h3>
+                    <p>Rank-correlation editor for one-to-many pairs with automatic matrix validity (positive-definite) checking.</p>
+                </div>
+            </div>
+            <div class="video-card sheet-card">
+                <div class="video-icon">SIM</div>
                 <div>
                     <h3>Simulation Settings</h3>
-                    <p>Configure iterations, convergence, and run modes</p>
+                    <p>Toggle base variability, market conditions and the register; set iterations, random seed, convergence monitoring, percentiles and budget confidence.</p>
                 </div>
-            </a>
+            </div>
         </div>
     </div>
 
-    <!-- RESULTS -->
+    <!-- OUTPUT SHEETS -->
     <div class="video-section">
-        <h2 class="section-title">Results</h2>
+        <h2 class="section-title">Results &amp; Analysis Sheets</h2>
         <div class="video-grid">
-            <a href="https://app.screencast.com/QRKYRynV1QeAZ" target="_blank" class="video-card">
-                <div class="video-icon">&#9654;</div>
+            <div class="video-card sheet-card">
+                <div class="video-icon">YOE</div>
                 <div>
-                    <h3>Summary Statistics</h3>
-                    <p>Review contingency analysis and budget recommendations</p>
+                    <h3>Year of Expenditure</h3>
+                    <p>Base cost, register cost and delay by phase-segment in current-year and YOE dollars, with confidence-based budgets.</p>
                 </div>
-            </a>
-            <a href="https://app.screencast.com/wiE3xAyBpWWwq" target="_blank" class="video-card">
-                <div class="video-icon">&#9654;</div>
+            </div>
+            <div class="video-card sheet-card">
+                <div class="video-icon">SUM</div>
                 <div>
-                    <h3>Distributions</h3>
-                    <p>Visualize PDF histograms with CDF overlays</p>
+                    <h3>Summary</h3>
+                    <p>P-level total project cost, contingency in $ and %, P10/P90 spread, COV, and a check against the national contingency range.</p>
                 </div>
-            </a>
-            <a href="https://app.screencast.com/2GPRQXfRQ4nSP" target="_blank" class="video-card">
-                <div class="video-icon">&#9654;</div>
+            </div>
+            <div class="video-card sheet-card">
+                <div class="video-icon">SCEN</div>
                 <div>
-                    <h3>Joint Confidence Distribution</h3>
-                    <p>Analyze joint cost and schedule confidence scatter clouds</p>
+                    <h3>Scenarios</h3>
+                    <p>Layered results: base cost + base variability, + market conditions, + risk register, in CY and YOE, with contingency by source.</p>
                 </div>
-            </a>
-            <a href="https://app.screencast.com/E5a1fPXQtNV2v" target="_blank" class="video-card">
-                <div class="video-icon">&#9654;</div>
+            </div>
+            <div class="video-card sheet-card">
+                <div class="video-icon">DIST</div>
                 <div>
-                    <h3>Response Analysis</h3>
-                    <p>Evaluate risk response effectiveness and ROI</p>
+                    <h3>Distributions &amp; Histogram</h3>
+                    <p>PDF/CDF bins for every output, plus a presentation-ready results chart.</p>
                 </div>
-            </a>
-            <a href="https://app.screencast.com/lpAeyoahzdPSx" target="_blank" class="video-card">
-                <div class="video-icon">&#9654;</div>
+            </div>
+            <div class="video-card sheet-card">
+                <div class="video-icon">SENS</div>
+                <div>
+                    <h3>Sensitivity</h3>
+                    <p>Spearman rank correlation, variance share and top-driver share for each output.</p>
+                </div>
+            </div>
+            <div class="video-card sheet-card">
+                <div class="video-icon">TORN</div>
                 <div>
                     <h3>Tornado</h3>
-                    <p>Identify top risk drivers with tornado charts</p>
+                    <p>Tornado charts of the top risk drivers, selectable by output.</p>
                 </div>
-            </a>
-            <a href="https://app.screencast.com/VYshEs1Eh5v9v" target="_blank" class="video-card">
-                <div class="video-icon">&#9654;</div>
+            </div>
+            <div class="video-card sheet-card">
+                <div class="video-icon">RANK</div>
+                <div>
+                    <h3>Risk Rank</h3>
+                    <p>Cost and schedule threats and opportunities ranked by expected value.</p>
+                </div>
+            </div>
+            <div class="video-card sheet-card">
+                <div class="video-icon">TAIL</div>
                 <div>
                     <h3>Tail Drivers</h3>
-                    <p>Find which risks drive worst-case outcomes</p>
+                    <p>Which risks fire in the favorable (lower 10%) and adverse (upper 10%) tails, with excess contribution.</p>
                 </div>
-            </a>
-            <a href="https://app.screencast.com/vjTuIG3zM2rWd" target="_blank" class="video-card">
-                <div class="video-icon">&#9654;</div>
+            </div>
+            <div class="video-card sheet-card">
+                <div class="video-icon">WHAT</div>
                 <div>
                     <h3>What-If Sensitivity</h3>
-                    <p>Test scenarios by toggling risks on and off</p>
+                    <p>Deactivate risks one at a time and watch live contingency and P-level cost respond.</p>
                 </div>
-            </a>
+            </div>
+            <div class="video-card sheet-card">
+                <div class="video-icon">JC</div>
+                <div>
+                    <h3>Joint Confidence</h3>
+                    <p>YOE cost vs. completion-date scatter with 80/90% contours, marginal P-levels and joint coverage.</p>
+                </div>
+            </div>
+            <div class="video-card sheet-card">
+                <div class="video-icon">USER</div>
+                <div>
+                    <h3>User-Defined Outputs</h3>
+                    <p>Add any cell or formula as a tracked simulation output and it appears in every results sheet.</p>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- APPLICATION SETTINGS -->
+    <!-- APP CTA -->
     <div class="video-section">
-        <h2 class="section-title">Application Settings</h2>
-        <div class="video-grid">
-            <a href="https://app.screencast.com/201FCb5WKwaT9" target="_blank" class="video-card">
-                <div class="video-icon">&#9654;</div>
-                <div>
-                    <h3>Starter Library</h3>
-                    <p>Manage risk categories and seed events</p>
-                </div>
-            </a>
-            <a href="https://app.screencast.com/eRh73LaAjOREw" target="_blank" class="video-card">
-                <div class="video-icon">&#9654;</div>
-                <div>
-                    <h3>Scoring Tables</h3>
-                    <p>Customize triage scoring scales and bands</p>
-                </div>
-            </a>
-            <a href="https://app.screencast.com/d9lFlgc61Fm8c" target="_blank" class="video-card">
-                <div class="video-icon">&#9654;</div>
-                <div>
-                    <h3>Diagnostics Report</h3>
-                    <p>Generate diagnostic reports for troubleshooting</p>
-                </div>
-            </a>
-        </div>
+        <h2 class="section-title">Prefer the Desktop Application?</h2>
+        <p>The CASTR application offers the same methodology in a dedicated Windows program with a guided workflow, project management, starter risk library, triage scoring and diagnostics. <a href="https://github.com/michaelsmith935-ux/CASTR/releases" target="_blank">Download the CASTR application</a> or <a href="compare.html">compare features</a>.</p>
     </div>
 
 </div>
@@ -586,6 +637,7 @@
         <a href="purchase.html">Purchase</a>
         <a href="compare.html">Compare</a>
         <a href="Users.Manual.pdf" target="_blank">User Manual</a>
+        <a href="videos.html">Video Library</a>
         <a href="https://github.com/michaelsmith935-ux/CASTR/releases" target="_blank">Download</a>
         <a href="License.txt" target="_blank">License Agreement</a>
     </div>
@@ -605,8 +657,8 @@
             index.push({
                 title: h3 ? h3.textContent.trim() : 'Video',
                 text: p ? p.textContent.trim() : '',
-                section: secTitle ? secTitle.textContent.trim() : 'Video Library',
-                url: card.closest('a') ? card.closest('a').href : '#',
+                section: secTitle ? secTitle.textContent.trim() : 'Spreadsheet',
+                url: card.closest('a') ? card.closest('a').href : 'spreadsheet.html',
                 el: card
             });
         });
@@ -619,7 +671,7 @@
             {title:'Pricing', text:'Perpetual licensing, free trial, renewal', section:'Home', url:'index.html#pricing'},
             {title:'FAQ', text:'Frequently asked questions about CASTR', section:'Home', url:'index.html#faq'},
             {title:'Validation & QA', text:'Methodology verification, domain expert oversight, transparency, security', section:'Home', url:'index.html#validation'},
-            {title:'CASTR Spreadsheet', text:'Free macro-enabled Excel workbook edition of CASTR, download', section:'Page', url:'spreadsheet.html'},
+            {title:'Video Library', text:'Step-by-step video tutorials for every CASTR feature', section:'Page', url:'videos.html'},
             {title:'User Manual', text:'CASTR user manual PDF documentation', section:'Document', url:'Users.Manual.pdf'}
         ];
         crossLinks.forEach(function(c){ c.el = null; index.push(c); });
