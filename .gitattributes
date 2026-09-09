@@ -1,0 +1,3 @@
+# Keep Windows batch files CRLF so Release Website.cmd never shows a phantom line-ending change
+*.cmd text eol=crlf
+*.bat text eol=crlf

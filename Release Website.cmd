@@ -57,7 +57,24 @@ if errorlevel 2 (
 
 echo.
 echo ===== Step 3: commit and push =====
+if exist ".git\index.lock" (
+    echo A stale git lock file exists: .git\index.lock
+    echo If no other git program ^(GitHub Desktop, VS Code^) is open, it is safe to remove.
+    choice /c YN /n /m "Remove the lock file and continue? [Y/N] "
+    if errorlevel 2 (
+        echo Cancelled - nothing was committed or pushed.
+        pause
+        exit /b 1
+    )
+    del /f /q ".git\index.lock"
+)
 git add -A
+if errorlevel 1 (
+    echo.
+    echo *** git add failed - NOTHING was committed or pushed. Fix the error above and run again.
+    pause
+    exit /b 1
+)
 git diff --cached --quiet
 if not errorlevel 1 (
     echo Nothing new to commit - the repository already matches this folder.
