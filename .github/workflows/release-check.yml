@@ -1,0 +1,22 @@
+name: Spreadsheet release check
+
+# Fails the build when spreadsheet.html's version references disagree with each
+# other or the published "CASTR Spreadsheet <ver>.xlsm" file is missing.
+# The workbook's Check Updates routine reads this page - see scripts/check_release.py
+# and RELEASE_CHECKLIST.md.
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Check spreadsheet.html version consistency
+        run: python scripts/check_release.py
