@@ -366,7 +366,7 @@
 <div class="container">
 
     <!-- How It Works -->
-    <h2 style="text-align:center; margin-bottom:1.25rem; color:var(--primary);">How to Get Your License</h2>
+    <h2 style="text-align:center; margin-bottom:1.25rem; color:var(--primary);">How to Get Your Free License</h2>
     <div class="steps">
         <div class="step-card">
             <div class="step-number">1</div>
@@ -375,18 +375,18 @@
         </div>
         <div class="step-card">
             <div class="step-number">2</div>
-            <h3>Purchase a License</h3>
-            <p>Enter your Machine ID and email below, then complete payment securely through Stripe.</p>
+            <h3>Request Your Free License</h3>
+            <p>Enter your Machine ID, email and name below. Submitting opens a pre-filled email request &mdash; no payment is required.</p>
         </div>
         <div class="step-card">
             <div class="step-number">3</div>
             <h3>Receive Your License</h3>
-            <p>After payment is confirmed, a license key tied to your machine will be emailed to you.</p>
+            <p>A license key tied to your machine will be emailed to you, typically within 24 hours.</p>
         </div>
         <div class="step-card">
             <div class="step-number">4</div>
             <h3>Staying Up to Date</h3>
-            <p>CASTR notifies you in-app when a new release is available and when your upgrade coverage is nearing expiry. You can keep running your current version forever, or renew for TBD to unlock the latest build.</p>
+            <p>CASTR notifies you in-app when a new release is available and when your upgrade coverage is nearing expiry. You can keep running your current version forever, or renew upgrade coverage (TBD) to unlock the latest build.</p>
         </div>
     </div>
 
@@ -396,9 +396,9 @@
         <!-- New License -->
         <div class="purchase-card" id="new-license">
             <div class="purchase-header">
-                <h2>New License</h2>
-                <div class="price">TBD</div>
-                <div class="price-note">One-time payment &bull; Perpetual use</div>
+                <h2>Perpetual License</h2>
+                <div class="price">Free</div>
+                <div class="price-note">No payment &bull; Perpetual use &bull; 12 months of upgrades included</div>
             </div>
             <div class="purchase-body">
                 <ul class="features-list">
@@ -419,7 +419,7 @@
                     <div class="form-group">
                         <label for="email">Email Address</label>
                         <input type="email" id="email" name="email" placeholder="you@example.com" required>
-                        <div class="form-hint">Your license key will be sent to this address.</div>
+                        <div class="form-hint">Your free license key will be sent to this address.</div>
                     </div>
 
                     <div class="form-group">
@@ -434,18 +434,18 @@
                     </div>
 
                     <p style="font-size:0.8rem; color:#555; margin:0.75rem 0 0.5rem; text-align:center;">
-                        By purchasing, you agree to the
+                        By requesting a license, you agree to the
                         <a href="License.txt" target="_blank" rel="noopener">CASTR Software License Agreement</a>.
                     </p>
 
                     <button type="submit" class="buy-button" id="buyBtn">
-                        Purchase License &mdash; TBD
+                        Request Free License
                     </button>
                 </form>
 
                 <p class="secure-note">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1C8.676 1 6 3.676 6 7v2H4v14h16V9h-2V7c0-3.324-2.676-6-6-6zm0 2c2.276 0 4 1.724 4 4v2H8V7c0-2.276 1.724-4 4-4zm0 10c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2z"/></svg>
-                    Payments are processed securely by <strong>Stripe</strong>. We never store your card details.
+                    No payment information is required. Submitting opens your email program with the request pre-filled.
                 </p>
             </div>
         </div>
@@ -511,13 +511,13 @@
         <h3>Frequently Asked Questions</h3>
 
         <div class="faq-item">
-            <strong>What does the TBD license include?</strong>
-            <p>A perpetual license to run CASTR on one machine, plus 12 months of free upgrades to any new releases published during that window.</p>
+            <strong>What does the free license include?</strong>
+            <p>A perpetual license to run CASTR on one machine, at no cost, plus 12 months of free upgrades to any new releases published during that window.</p>
         </div>
 
         <div class="faq-item">
             <strong>What happens after 12 months?</strong>
-            <p>Your installed version keeps working forever. To unlock releases published after your coverage window, renew for TBD for another 12 months of upgrades.</p>
+            <p>Your installed version keeps working forever. To unlock releases published after your coverage window, renew upgrade coverage (TBD) for another 12 months of upgrades.</p>
         </div>
 
         <div class="faq-item">
@@ -532,7 +532,7 @@
 
         <div class="faq-item">
             <strong>How long does it take to receive my license?</strong>
-            <p>Licenses are typically delivered within 24 hours of confirmed payment. You will receive an email with your license key and activation instructions.</p>
+            <p>Licenses are typically delivered within 24 hours of your request. You will receive an email with your license key and activation instructions.</p>
         </div>
 
         <div class="faq-item">
@@ -547,7 +547,7 @@
 
         <div class="faq-item">
             <strong>Is there a refund policy?</strong>
-            <p>If you experience any issues with the software, please contact us within 30 days of purchase for a full refund.</p>
+            <p>The perpetual license is free, so there is nothing to refund. For upgrade-coverage renewals, contact us within 30 days of payment if you experience any issues and we will issue a full refund.</p>
         </div>
     </div>
 
@@ -578,7 +578,6 @@
     // via URL parameters so you can see them in your dashboard.
     // ============================================================
 
-    const STRIPE_NEW_LICENSE_LINK = 'https://buy.stripe.com/3cI00laoBeLO6TygqG2Fa02';
     const STRIPE_RENEWAL_LINK     = 'https://buy.stripe.com/cNi9AVgMZbzCgu83DU2Fa04';
 
     function handleSubmit(formId, emailId, machineId, fullNameId, stripeLink) {
@@ -613,7 +612,22 @@
         });
     }
 
-    handleSubmit('purchaseForm', 'email',      'machineId',      'fullName',      STRIPE_NEW_LICENSE_LINK);
+    // Free perpetual license: open a pre-filled email request (no payment)
+    document.getElementById('purchaseForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const email = document.getElementById('email').value.trim();
+        const machine = document.getElementById('machineId').value.trim();
+        const fullName = document.getElementById('fullName').value.trim();
+        if (!email || !machine || !fullName) { alert('Please fill in all fields before proceeding.'); return; }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { alert('Please enter a valid email address.'); return; }
+        const subject = 'CASTR Free License Request - Machine ID ' + machine;
+        const body = 'Please issue a free CASTR perpetual license.\n\n'
+            + 'Name: ' + fullName + '\n'
+            + 'Email: ' + email + '\n'
+            + 'Machine ID: ' + machine + '\n\n'
+            + 'I agree to the CASTR Software License Agreement.';
+        window.location.href = 'mailto:michael.smith935@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    });
     handleSubmit('renewForm',    'renewEmail', 'renewMachineId', 'renewFullName', STRIPE_RENEWAL_LINK);
 </script>
 
