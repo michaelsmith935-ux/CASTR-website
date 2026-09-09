@@ -38,6 +38,7 @@ if not defined VER (
 
 echo.
 echo ===== Step 2: changes to be published =====
+echo   (M = modified file,  ?? = new file,  D = deleted file  - compared with GitHub)
 git status --short
 if errorlevel 1 (
     echo *** git is not available or this folder is not a git repository.

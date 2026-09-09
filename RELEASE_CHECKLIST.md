@@ -12,24 +12,27 @@ end of `DoRelease`).
 2. Run the release macro (`DoRelease`, Ctrl+Shift+R, or `DoReleaseXlsm`). Its last step,
    `CASTR_VerifyRelease`, compares the workbook version with the website and lists what
    is still missing on the website.
-3. Rename the release file to exactly `CASTR Spreadsheet <ver>.xlsm`
-   (e.g. `CASTR Spreadsheet 74.1.0.xlsm`).
+3. Save/rename the release file to exactly `CASTR Spreadsheet <ver>.xlsm`
+   (e.g. `CASTR Spreadsheet 75.1.0.xlsm`) in `D:\aShare\Claude\Projects\PRBE Excel`.
 
 ## B. Website (repo `D:\aShare\Claude\Projects\prbe-website`, GitHub `michaelsmith935-ux/CASTR-website`)
-4. Copy `CASTR Spreadsheet <ver>.xlsm` into the repo root. Remove the previous version's
-   `.xlsm` (or keep it deliberately – the check only warns).
-5. In `spreadsheet.html` change every version reference to `<ver>` (5 places):
-   - `<meta name="castr-spreadsheet-version" content="<ver>">`   (≈ line 11 – read first by the workbook)
-   - `<a href="CASTR%20Spreadsheet%20<ver>.xlsm" download="CASTR Spreadsheet <ver>.xlsm"`  (≈ line 400)
-   - `<p>CASTR Spreadsheet <ver>.xlsm &mdash; …</p>`                       (≈ line 404)
-   - `<p class="dl-meta">Version <ver> &bull; approx. <size> MB …</p>`  (≈ line 405; update the size too)
-6. **Double-click `Release Website.cmd`** in the repo folder (`D:\aShare\Claude\Projects\prbe-website`).
-   It runs `scripts\check_release.py` (must print `OK - spreadsheet.html consistently publishes
-   version <ver>.`), shows the files to be committed, asks **Y/N**, then runs
-   `git add -A`, `git commit -m "Release CASTR Spreadsheet <ver>"` and `git push origin`.
-   If the check fails it stops and nothing is committed – fix steps 4–5 and double-click again.
-7. On GitHub the Action **Spreadsheet release check** runs on the push; a red ✗ (and an
-   e-mail from GitHub) means step 4 or 5 is still incomplete.
+4. **Double-click `Prepare Release.cmd`** and type the new version number (e.g. `75.1.0`).
+   It copies `CASTR Spreadsheet <ver>.xlsm` from the PRBE Excel folder (or this folder) into
+   the repo root, removes the previous version's `.xlsm`, rewrites every version reference in
+   `spreadsheet.html` (meta tag, download link, card text, file size), runs the consistency
+   check, and then hands over to `Release Website.cmd`, which shows the changes, asks **Y/N**,
+   and commits + pushes with the message `Release CASTR Spreadsheet <ver>`.
+   If anything fails it stops before committing – fix the message shown and run it again.
+5. On GitHub the Action **Spreadsheet release check** runs on the push; a red ✗ (and an
+   e-mail from GitHub) means the page and the file disagree.
+
+_Manual fallback (what the .cmd does for you):_ the version appears in `spreadsheet.html` in
+5 places – `<meta name="castr-spreadsheet-version" content="…">` (≈ line 11), the download
+link's `href="CASTR%20Spreadsheet%20….xlsm"` and `download="CASTR Spreadsheet ….xlsm"`
+(≈ line 402), `<p>CASTR Spreadsheet ….xlsm …</p>` (≈ line 406) and
+`<p class="dl-meta">Version … &bull; approx. … MB` (≈ line 407) – and the matching `.xlsm`
+must be in the repo root. Check with `D:\Python\python.exe scripts\check_release.py`,
+then double-click `Release Website.cmd`.
 
 ## C. Confirm end-to-end
 8. Wait ~1 minute for GitHub Pages, then in the released workbook click ribbon
